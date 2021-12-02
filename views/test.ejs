@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Test Login Google</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-signin-client_id" content="922682730649-gpahj7tc4qcb260gikdvmnvsq8gvidvr.apps.googleusercontent.com">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <h2>SONG JI HYO</h2>
+            </br>
+            <img src="https://vtv1.mediacdn.vn/thumb_w/650/2020/6/3/songjihyo-15911569175862043279981-crop-1591156973864951274658.jpg" 
+            class="rounded-circle" alt="Cinque Terre" width="100" height="100">
+            </br>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+            <a href="#" onclick="signOut();">Sign out</a>
+        </div>
+
+        <script>
+            function onSignIn(googleUser) {
+                var id_token = googleUser.getAuthResponse().id_token;
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/google/login');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onload = function() {
+                    if (xhr.responseText == 'success') {
+                        console.log('success');
+                        signOut();
+                        location.assign('/home');
+                    }
+                    else{
+                        location.assign('/error');
+                    }
+                    
+                }
+                xhr.send(JSON.stringify({token: id_token}));
+            }
+
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    console.log('User signed out.');
+                });
+            }
+        </script>
+    </body>
+
+</html>
