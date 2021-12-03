@@ -29,9 +29,9 @@ passport.use(
             if (profile.id) {
 
                 // Check if email is student.tdtu.edu.vn or tdtu.edu.vn
-                if(profile._json.hd !== "student.tdtu.edu.vn" || profile._json.hd !== "tdtu.edu.vn"){
+                if (profile._json.hd !== "student.tdtu.edu.vn" && profile._json.hd !== "tdtu.edu.vn") {
                     let err = "Your email is unavailable";
-                    return done(err, null)
+                    return done(err, null);
                 }
 
                 const authId = "google:" + profile.id;

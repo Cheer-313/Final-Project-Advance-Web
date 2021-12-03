@@ -5,6 +5,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
+const passport = require("passport");
 
 // Require route
 const indexRoute = require("./routes/IndexRoute");
@@ -25,7 +26,8 @@ app.use(session({
     saveUninitialized: true,
     secret: 'OlalaOlala'
 }))
-
+app.use(passport.initialize());
+app.use(passport.session());
 // Route
 app.use("/", indexRoute);
 app.use("/login", loginRoute);

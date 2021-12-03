@@ -7,7 +7,8 @@ indexRoute.get("/", (req, res) => {
 });
 
 indexRoute.get("/home", (req,res) => {
-    return res.end(req.user);
+    console.log(req.user);
+    return res.render("home", {user: req.user});
 })
 
 module.exports = indexRoute;
