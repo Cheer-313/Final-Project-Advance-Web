@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>createAccount</title>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/themify-icons/themify-icons.css">
+</head>
+
+<body>
+
+    <div id="main">
+        <div id="header">
+            <ul id="nav">
+                <li>
+                    <a href="#">
+                        <i class="ti-user"></i>
+                        Mạch Trung Tín
+                        <i class="nav-arrow-down ti-angle-down"></i>
+                    </a>
+                    <ul class="subnav">
+                        <li><a href="#">Đăng xuất</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Trang chủ</a></li>
+            </ul>
+            <div id="notify_header">
+                <a href="#" class="notify">THÔNG BÁO</a>
+            </div>
+            <div id="js-menu-mobile-btn" class="menu-mobile-btn ti-menu"></div>
+        </div>
+
+        <div id="content">
+            <div id="sidebar">
+                <li>
+                    <a href="#"><i class="icon ti-home"></i>Trang chủ</a>
+                </li>
+                <li>
+                    <a href="#" id="js-dropdown-btn"><i class="icon ti-layout"></i>Phân loại thông báo</a>
+                    <i class="nav-arrow-down ti-angle-down"></i>
+                </li>
+                <div class="dropdown-container" id="js-dropdown-container">
+                    <li><a href="#">Phòng đại học</a></li>
+                    <li><a href="#">Uỷ ban</a></li>
+                    <li><a href="#">Phòng chức năng</a></li>
+
+                </div>
+            </div>
+
+            <div id="intension">
+                <div class="form_signIn">
+                    <form id="form" action="">
+                        <h1>TẠO TÀI KHOẢN MỚI</h1>
+                        <div class="field">
+                            <label for="email">Email</label></br>
+                            <input type="text" id="email" name="email"></br>
+                            <label for="password">Mật khẩu</label></br>
+                            <input type="password" id="password" name="password"></br>
+                            <label for="name">Họ tên</label></br>
+                            <input type="text" id="name" name="name"></br>
+                            <label for="date">Ngày sinh</label></br>
+                            <input type="date" id="date" name="date"></br>
+                        </div>
+                        <h2>Phòng/Khoa</h2>
+                        <div class="department">
+                            <div class="box">
+                                <input type="checkbox" class="checkbox" value="PDH" id="PDH">
+                                <label>Phòng đại học</label>
+                            </div>
+                            <div class="box">
+                                <input type="checkbox" class="checkbox" value="PTDH" id="PTDH">
+                                <label>Phòng trước đại học</label>
+                            </div>
+                            <div class="box">
+                                <input type="checkbox" class="checkbox" value="PSDH" id="PSDH">
+                                <label>Phòng sau đại học</label>
+                            </div>
+
+                        </div>
+                        <input id="btnSubmit" class="btn-signIn" type="submit" name="Đăng ký" value="Đăng ký">
+                        <div id="error"></div>
+                    </form>
+                </div>
+
+                <div class="print-values">
+                    <p id="valueList"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../public/javascripts/main.js"></script>
+</body>
+
+
+</html>
