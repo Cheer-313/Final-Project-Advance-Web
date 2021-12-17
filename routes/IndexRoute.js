@@ -11,4 +11,12 @@ indexRoute.get("/home", (req,res) => {
     return res.render("home", {user: req.user});
 })
 
+indexRoute.get("/error", (req, res) => {
+    res.render("error");
+});
+
+indexRoute.get("/log", (req, res) => {
+    res.render("login");
+});
+
 module.exports = indexRoute;

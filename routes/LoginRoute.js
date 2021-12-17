@@ -6,9 +6,8 @@ const loginRoute = express.Router();
 
 // Require passport-google
 require('../middlewares/passport/PassportGoogle');
-
-loginRoute.use(passport.initialize());
-loginRoute.use(passport.session());
+// Require passport-local
+require("../middlewares/passport/PassportLocal");
 
 // Route
 loginRoute.get('/', (req, res) => {
@@ -21,10 +20,19 @@ loginRoute.get("/auth/google",
     })
 );
 
+loginRoute.post("/auth/local",
+    passport.authenticate("local", {
+        successRedirect: "/home",
+        failureRedirect: "/error",
+    })
+);
+
 loginRoute.get("/auth/google/callback", 
     passport.authenticate("google", {
         successRedirect: '/home',
         failureRedirect: '/login'
     }
 ));
+
+
 module.exports = loginRoute;
