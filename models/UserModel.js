@@ -1,22 +1,73 @@
 const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema({
+const googleSchema = mongoose.Schema({
     authId: String,
-    username: String,
-    password: String,
-    fullname: String,
-    email: String,
-    class: String,
-    faculty: String,
-    avatar: String,
-    categories: [String],
-    permission: Number,
-    time: { 
-        type: Date, 
-        default: Date.now 
+    fullname: { 
+        type: String, 
+        default: null 
+    },
+    email: { 
+        type: String, 
+        default: null, 
+        unique: true, 
+        sparse: true 
+    },
+    class: { 
+        type: String, 
+        default: null 
+    },
+    faculty: { 
+        type: String, 
+        default: null 
+    },
+    avatar: { 
+        type: String, 
+        default: null 
+    },
+    role: { 
+        type: [String], 
+        default: null 
+    },
+    time: {
+        type: Date,
+        default: Date.now,
     },
 });
 
-const User = mongoose.model("user", userSchema);
+const localSchema = mongoose.Schema({
+    authId: String,
+    username: {
+        type: String,
+        default: null,
+        unique: true,
+        sparse: true,
+    },
+    password: {
+        type: String,
+        default: null,
+    },
+    fullname: {
+        type: String,
+        default: null,
+    },
+    avatar: {
+        type: String,
+        default: null,
+    },
+    role: {
+        type: [String],
+        default: null,
+    },
+    time: {
+        type: Date,
+        default: Date.now,
+    }
+});
 
-module.exports = User;
+const GoogleUser = mongoose.model("google", googleSchema, "user");
+const LocalUser = mongoose.model("local", localSchema, "user");
+
+module.exports = {
+    GoogleUser,
+    LocalUser
+};

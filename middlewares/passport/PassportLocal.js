@@ -1,37 +1,34 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const User = require("../../models/UserModel");
+const {LocalUser} = require("../../models/UserModel");
+const bcrypt = require('bcrypt');
 
-passport.serializeUser((user, done) => {
-    console.log('serial');
-    done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-    console.log("deserial");
-    User.findById(id).then((user) => {
-        done(null, user);
-    });
-});
-
+// Local Passport
 passport.use(
-    new LocalStrategy(async function (username, password, done) {
-        console.log(username, password);
-        await User.findOne({ username: username }, function (err, user) {
-            console.log(user);
-            if (err) {
-                console.log("abc");
-                return done(err);
-            }
-            if (!user) {
-                console.log("bc");
-                return done(null, false);
-            }
-            // if (!user.verifyPassword(password)) {
-            //     console.log("c");
-            //     return done(null, false);
-            // }
-            return done(null, user);
-        });
+    new LocalStrategy(function (username, password, done) {
+        try {
+            console.log(username, password);
+            LocalUser.findOne({ username: username }, function (err, user) {
+                // console.log(user);
+                if (err) {
+                    return done(err);
+                }
+                // Not existed user
+                if (!user) {
+                    return done(null, false);
+                }
+                
+                // Compare password with database password 
+                let result = bcrypt.compareSync(password, user.password)
+                if(!result){
+                    let error = "Password does not match";
+                    return done(error);
+                }
+                return done(null, user);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    
     })
 );
