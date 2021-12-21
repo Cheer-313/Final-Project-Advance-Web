@@ -7,10 +7,6 @@ const commentSchema = mongoose.Schema({
         type: String,
         default: uuid.generate(),
     },
-    content: {
-        type: String,
-        require: true,
-    },
     userType: {
         type: String,
         require: true,
@@ -18,6 +14,10 @@ const commentSchema = mongoose.Schema({
     commentBy: {
         type: mongoose.Schema.Types.ObjectId,
         refPath: "userType",
+    },
+    content: {
+        type: String,
+        require: true,
     },
     date: {
         type: String,
