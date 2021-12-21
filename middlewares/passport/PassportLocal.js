@@ -9,7 +9,6 @@ passport.use(
         try {
             console.log(username, password);
             LocalUser.findOne({ username: username }, function (err, user) {
-                // console.log(user);
                 if (err) {
                     return done(err);
                 }

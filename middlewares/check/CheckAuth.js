@@ -1,8 +1,22 @@
-const checkAuth = (req, res, next) => {
+const checkAuthSystem = (req, res, next) => {
     if(req.user){
         return next();
     }
     return res.redirect('/');
 }
 
-module.exports = checkAuth;
+const checkAuthAPI = (req, res, next) => {
+    if (req.user) {
+        return next();
+    }
+    return res.end(JSON.stringify({
+        code: 0,
+        message: "Error",
+        error: "Cant authenticate user."
+    }));
+};
+
+module.exports = {
+    checkAuthSystem,
+    checkAuthAPI
+};

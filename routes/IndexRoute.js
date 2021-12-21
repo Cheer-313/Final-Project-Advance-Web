@@ -6,11 +6,6 @@ indexRoute.get("/", (req, res) => {
     res.redirect("/login");
 });
 
-// indexRoute.get("/home", (req,res) => {
-//     console.log(req.user);
-//     return res.render("home", {user: req.user});
-// })
-
 indexRoute.get("/error", (req, res) => {
     res.render("error");
 });

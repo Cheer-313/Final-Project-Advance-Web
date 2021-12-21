@@ -14,7 +14,7 @@ const indexRoute = require("./routes/IndexRoute");
 const loginRoute = require("./routes/LoginRoute");
 const registerRoute = require("./routes/RegisterRoute");
 const profileRoute = require("./routes/ProfileRoute");
-
+const apiRoute = require("./routes/api/APIRoute");
 // Require Database
 const db = require("./database/db");
 
@@ -45,6 +45,7 @@ app.use("/", indexRoute);
 app.use("/login", loginRoute);
 app.use("/register", registerRoute);
 app.use("/profile", profileRoute);
+app.use("/api", apiRoute);
 
 app.listen(PORT, async () => {
     await db.connection;

@@ -40,6 +40,7 @@ class ProfileController {
                 return res.redirect("/profile/password");
             }
             else{
+                // Update new password
                 bcrypt.hash(newPassword, parseInt(process.env.SALT_ROUNDS), async (error, hash) => {
                     if (error) {
                         console.log(error);
@@ -66,6 +67,8 @@ class ProfileController {
                 let imagePath = req.user.avatar;
                 let avatar = req.file;
 
+                console.log(avatar);
+                
                 if(error){
                     req.flash("message", "Image is to large!");
                     return res.redirect("/profile/edit");

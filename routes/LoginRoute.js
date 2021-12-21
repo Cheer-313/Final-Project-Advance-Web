@@ -50,6 +50,7 @@ loginRoute.get("/auth/google",
 loginRoute.post("/auth/local",
     passport.authenticate('local', { failureRedirect: '/error' }),
     function(req, res) {
+        console.log(req.user);
         res.redirect('/profile');
     }
 );

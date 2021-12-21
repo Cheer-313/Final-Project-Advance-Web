@@ -24,7 +24,12 @@ class RegisterController {
                 let authId = uuid.generate();
                 let {username, password, fullname, role} = req.body;
 
-                let imagePath = `uploads/${authId}/${avatar.originalname}`;
+                let newPath = `uploads/${authId}`;
+                if (!fs.existsSync(newPath)) {
+                    fs.mkdirSync(newPath);
+                }
+                let imagePath = newPath + `/${avatar.originalname}`;
+
                 fs.renameSync(avatar.path, imagePath);
 
                 bcrypt.hash(password, parseInt(process.env.SALT_ROUNDS), async (error, hash) => {

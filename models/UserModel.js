@@ -1,36 +1,37 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 
 const googleSchema = mongoose.Schema({
     authId: String,
-    fullname: { 
-        type: String, 
-        default: null 
+    fullname: {
+        type: String,
+        default: null,
     },
-    email: { 
-        type: String, 
-        default: null, 
-        unique: true, 
-        sparse: true 
+    email: {
+        type: String,
+        default: null,
+        unique: true,
+        sparse: true,
     },
-    class: { 
-        type: String, 
-        default: null 
+    class: {
+        type: String,
+        default: null,
     },
-    faculty: { 
-        type: String, 
-        default: null 
+    faculty: {
+        type: String,
+        default: null,
     },
-    avatar: { 
-        type: String, 
-        default: null 
+    avatar: {
+        type: String,
+        default: null,
     },
-    role: { 
-        type: [String], 
-        default: null 
+    role: {
+        type: [String],
+        default: null,
     },
     time: {
-        type: Date,
-        default: Date.now,
+        type: String,
+        default: moment.utc().local().format("D-M-YYYY H:m:s"),
     },
 });
 
@@ -59,9 +60,9 @@ const localSchema = mongoose.Schema({
         default: null,
     },
     time: {
-        type: Date,
-        default: Date.now,
-    }
+        type: String,
+        default: moment.utc().local().format("D-M-YYYY H:m:s"),
+    },
 });
 
 const GoogleUser = mongoose.model("google", googleSchema, "user");
