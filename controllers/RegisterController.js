@@ -6,49 +6,58 @@ const bcrypt = require("bcrypt");
 
 class RegisterController {
     index (req, res){
-        return res.render('register');
+        let message = req.flash("message");
+        return res.render('register', {message: message});
     }
 
     register(req, res){
         let handler = upload.single('avatar');
         handler(req, res, error => {
             let avatar = req.file;
+            let authId = uuid.generate();
+            let { username, password, fullname, role } = req.body;
+
+            // Set default avatar path
+            let imagePath = "uploads/default/user.png";
 
             if(error){
-                return res.end("Image to large");
+                req.flash("message", error);
+                return res.redirect("/register");
             }
-            if(!avatar){
-                return res.end("Invalid image")
-            }
-            else{
-                let authId = uuid.generate();
-                let {username, password, fullname, role} = req.body;
-
-                let newPath = `uploads/${authId}`;
+            if(avatar){
+                let newPath = `uploads/${authId}/avatar`;
                 if (!fs.existsSync(newPath)) {
                     fs.mkdirSync(newPath);
                 }
-                let imagePath = newPath + `/${avatar.originalname}`;
+                imagePath = newPath + `/${avatar.originalname}`;
 
                 fs.renameSync(avatar.path, imagePath);
-
-                bcrypt.hash(password, parseInt(process.env.SALT_ROUNDS), async (error, hash) => {
-                    if (error) {
-                        return res.redirect("/error");
-                    }
-
-                    await LocalUser.create({
-                        authId: "local:" + authId,
-                        username: username,
-                        password: hash,
-                        fullname: fullname,
-                        avatar: imagePath,
-                        role: role,
-                    });
-
-                    return res.end("OK");
-                });
             }
+
+            // Hash password and register
+            bcrypt.hash(password, parseInt(process.env.SALT_ROUNDS), async (error, hash) => {
+                if (error) {
+                    req.flash("message", error);
+                    return res.redirect("/register");
+                }
+
+                await LocalUser.create({
+                    authId: "local:" + authId,
+                    username: username,
+                    password: hash,
+                    fullname: fullname,
+                    avatar: imagePath,
+                    role: role,
+                }, function(error, result){
+                    if(error){
+                        req.flash("message", error);
+                        return res.redirect("/register");
+                    } else{
+                        req.flash("Create successfully");
+                        return res.redirect("/login");
+                    }
+                });
+            });
         })
     }
 }

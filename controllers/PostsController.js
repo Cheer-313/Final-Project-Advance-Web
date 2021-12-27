@@ -279,14 +279,20 @@ class PostsController{
                         error: error,
                     })
                 );
+            }else{
+                // Delete all comments in post
+                // result.comment.forEach(_idComment => {
+                //     Comment.findOneAndDelete({_id: _idComment})
+                // });
+
+                return res.end(
+                    JSON.stringify({
+                        code: 1,
+                        message: "Delete successfully",
+                        result: true,
+                    })
+                );
             }
-            return res.end(
-                JSON.stringify({
-                    code: 1,
-                    message: "Delete successfully",
-                    result: true,
-                })
-            );
         });
     }
 }

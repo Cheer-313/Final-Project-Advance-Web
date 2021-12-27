@@ -1,5 +1,6 @@
 const Posts = require("../models/PostsModel");
 const Comment = require("../models/CommentModel");
+const upload = require("../middlewares/upload/UploadImage");
 
 class CommentController {
     getAll(req, res) {

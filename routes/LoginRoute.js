@@ -38,7 +38,8 @@ require("../middlewares/passport/PassportLocal");
 
 // Route
 loginRoute.get('/', (req, res) => {
-    res.render('test');
+    let message = req.flash("message");
+    res.render('test', {message: message});
 })
 
 loginRoute.get("/auth/google",

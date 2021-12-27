@@ -8,7 +8,7 @@ const uploadImage = multer({
         } else callback(null, false);
     },
 
-    limits: { fileSize: 5000000 },  // Limit: 1 Mb
+    limits: { fileSize: 5242880 }, // Limit: 5 Mb
 });
 
 module.exports = uploadImage;
