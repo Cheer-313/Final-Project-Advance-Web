@@ -370,44 +370,35 @@ html {
     width: 100%;
 }
 
+.create_notify_btn {
+    margin-bottom: 30px;
+}
+
+.create_notify_btn a {
+    border: 1px solid black;
+    padding: 8px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    background: #0067ac;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.create_notify_btn a:hover {
+    opacity: 0.8;
+}
+
 #notify_manage td,
 th {
     border: 1px solid #dddddd;
     text-align: center;
-    padding: 8px;
+    padding: 16px 8px;
 }
 
-.announcement-post {
-    position: relative;
-    background-color: #edf7fa;
-    width: 80%;
-    cursor: pointer;
-}
-
-.announcement-post:hover {
-    opacity: 0.8;
-}
-.announcement-post .announcement-post-info {
-    text-align: left;
-    line-height: 30px;
-    width: 80%;
-}
-
-.announcement-post .announcement-post-info p:first-child {
-    color: #0061ad;
-}
-
-.announcement-post .announcement-post-info a {
+.notify_manage_content a {
     text-decoration: none;
 }
 
-.announcement-post .announcement-post-date {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    line-height: 30px;
-    opacity: 0.7;
-}
 .notify-table-content {
     display: none;
 }
@@ -464,4 +455,93 @@ th {
     cursor: pointer;
 }
 
+.notify_content a {
+    text-decoration: none;
+    text-align: left;
+}
 /* END THÔNG BÁO */
+
+/* START NOTIFY CONTENT */
+
+.content_grap {
+    padding: 30px;
+}
+
+.content_header {
+    text-align: center;
+    color: #0061ad;
+    padding-bottom: 50px;
+}
+
+.content_text {
+    line-height: 1.5;
+    font-size: 30px;
+    font-family: "Times New Roman", serif;
+}
+
+/* END NOTIFY CONTENT */
+
+/* START CREATE NOTIFY */
+
+#intension .form_createNotify form {
+    width: 1000px;
+    padding: 50px 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    transform: translateY(-15%);
+}
+
+#intension .form_createNotify h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+#intension .form_createNotify h2 {
+    margin: 15px 0;
+}
+
+.field input {
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: #fff;
+    padding: 12px 18px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.btn-signIn {
+    width: 200px;
+    border: none;
+    background-color: #eee;
+    border-radius: 20px;
+    padding: 12px 2px;
+    font-size: 16px;
+    margin-left: 50%;
+    margin-top: 30px;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.btn-signIn:hover {
+    background-color: #ccc;
+}
+
+#intension textarea {
+    height: 200px;
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+
+#error {
+    text-align: center;
+    margin-top: 30px;
+    color: #e74c3c;
+}
+
+/* END CREATE NOTIFY */

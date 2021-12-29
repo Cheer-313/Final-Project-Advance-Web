@@ -25,21 +25,21 @@ menuBtn.addEventListener("click", function () {
 
 // START PAGES NOTIFY
 
-function swapPages(event, page) {
-    let i, tabContent, tabLinks;
+// function swapPages(event, page) {
+//     let i, tabContent, tabLinks;
 
-    tabContent = document.getElementsByClassName("notify-table-content");
-    for (i = 0; i < tabContent.length; i++) {
-        tabContent[i].style.display = "none";
-    }
-    tabLinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tabLinks.length; i++) {
-        tabLinks[i].className = tabLinks[i].className.replace("active", "");
-    }
-    document.getElementById(page).style.display = "table";
-    event.currentTarget.className += "active";
+//     tabContent = document.getElementsByClassName("notify-table-content");
+//     for (i = 0; i < tabContent.length; i++) {
+//         tabContent[i].style.display = "none";
+//     }
+//     tabLinks = document.getElementsByClassName("tablinks");
+//     for (i = 0; i < tabLinks.length; i++) {
+//         tabLinks[i].className = tabLinks[i].className.replace("active", "");
+//     }
+//     document.getElementById(page).style.display = "table";
+//     event.currentTarget.className += "active";
 
-}
+// }
 
 // END PAGES NOTIFY
 
@@ -84,3 +84,12 @@ form.addEventListener('submit', (e) => {
 })
 
 // END CREATE ACCOUNT
+
+// TINYMCE
+tinymce.init({
+    selector: '#mytextarea',
+    plugins: 'lists',
+    toolbar: 'undo redo | bold italic underline | numlist bullist',
+    menubar: false,
+    branding: false,
+});
