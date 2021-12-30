@@ -93,3 +93,11 @@ tinymce.init({
     menubar: false,
     branding: false,
 });
+
+
+// SUBMIT NOTIFY FORM
+
+const btnCreate = document.getElementById('btnCreate');
+btnCreate.onclick = function () {
+    window.location.href = "QuanLyThongBao.html";
+}
