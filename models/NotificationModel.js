@@ -30,8 +30,8 @@ const notificationSchema = mongoose.Schema({
         default: null
     },
     date: {
-        type: String,
-        default: moment.utc().local().format("D-M-YYYY H:m:s"),
+        type: Date,
+        default: moment.utc().local(),
     },
 });
 

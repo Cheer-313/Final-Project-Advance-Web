@@ -1,0 +1,20 @@
+<div id="sidebar">
+    <li>
+        <a href="/"><i class="icon ti-home"></i>Trang chủ</a>
+    </li>
+    <li>
+        <a href="#" id="js-dropdown-btn"><i class="icon ti-layout"></i>Phân loại thông báo</a>
+        <i class="nav-arrow-down ti-angle-down"></i>
+    </li>
+    <div class="dropdown-container" id="js-dropdown-container">
+        <% division.forEach(role => { %>
+            <li><a href="#"><%= role %></a></li>
+        <% }); %>
+    </div>
+
+    <% if(user || user.role !== "Student"){ %>
+        <li>
+            <a href="/noti/manage"><i class="icon ti-layout"></i>Quản lý thông báo</a>
+        </li>
+    <% } %>
+</div>

@@ -20,8 +20,8 @@ const commentSchema = mongoose.Schema({
         require: true,
     },
     date: {
-        type: String,
-        default: moment.utc().local().format("D-M-YYYY H:m:s"),
+        type: Date,
+        default: moment.utc().local(),
     },
 });
 

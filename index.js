@@ -10,7 +10,9 @@ const bodyParser = require("body-parser");
 const flash = require("connect-flash");
 const http = require("http");
 const socketio = require("socket.io");
-const Socket = require("./socket/Socket");
+const division = require("./const/role");
+const expressLayouts = require("express-ejs-layouts");
+const moment = require("moment");
 
 // Require route
 const indexRoute = require("./routes/IndexRoute");
@@ -32,11 +34,12 @@ const io = socketio(server);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/tinymce",express.static(path.join(__dirname, "/node_modules/tinymce/")));
 app.use(express.json());
 app.use(session({
     resave: false,
     saveUninitialized: true,
-    secret: 'OlalaOlala'
+    secret: '5180076907771039'
 }));
 app.use(flash());
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -48,9 +51,31 @@ app.use(
 ); 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(expressLayouts);
+
+// Set default layout
+app.set("layout", "./layouts/layout");
 
 // Set io available in all request handlers
 app.set("socketio", io);
+
+// Set division role to all route
+app.use((req, res, next) => {
+    res.locals.division = division;
+    return next();
+});
+
+// Set info user to all route
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    return next();
+});
+
+// Set moment to all routes
+app.use((req, res, next) => {
+    res.locals.moment = moment;
+    return next();
+});
 
 // Route
 app.use("/", indexRoute);

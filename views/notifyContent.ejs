@@ -1,0 +1,16 @@
+<div id="main">
+    <%- include("./partials/header.ejs") %>
+
+    <div id="content">
+        <%- include("./partials/sidebar.ejs") %>
+
+        <div class="content_grap">
+            <div class="content_header">
+                <h1><%= notification.title %></h1>
+            </div>
+            <div class="content_text">
+                <%- notification.body %>
+            </div>
+        </div>
+    </div>
+</div>

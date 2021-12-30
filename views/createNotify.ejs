@@ -1,0 +1,52 @@
+<div id="main">
+    <%- include("./partials/header.ejs") %>
+
+        <div id="content">
+            <%- include("./partials/sidebar.ejs") %>
+
+                <div id="intension">
+                    <div class="form_createNotify">
+                        <form action="/noti/create" method="post" enctype="multipart/form-data">
+                            <h1>TẠO THÔNG BÁO MỚI</h1>
+
+                            <div class="field">
+                                <label for="title">Title</label></br>
+                                <input type="text" id="title" name="title" value=""></br>
+
+                                <label for="file">File</label>
+                                <input type="file" id="file" name="files" multiple></input>
+                                <select name="division" id="division">
+                                    <% if(user.role[0] !== "Admin"){ %>
+                                        <% user.role.forEach(role=> { %>
+                                            <option value="<%= role %>"><%= role %></option>
+                                        <% }); %>
+                                    <% } else { %>
+                                        <% division.forEach(role=> { %>
+                                            <option value="<%= role %>"><%= role %></option>
+                                        <% }); %>
+                                    <% } %>
+                                </select>
+                                </br>
+
+                                <label for="mytextarea">Content</label></br>
+                                <textarea id="mytextarea" name="body"></textarea>
+
+                            </div>
+
+                            <button id="btnCreate" class="btn-signIn" type="submit">TẠO THÔNG BÁO</button>
+
+
+                            <% if(message){ %>
+                                <div id="error">
+                                    <%= message %>
+                                </div>
+                                <% } %>
+                        </form>
+                    </div>
+
+                    <div class="print-values">
+                        <p id="valueList"></p>
+                    </div>
+                </div>
+        </div>
+</div>
