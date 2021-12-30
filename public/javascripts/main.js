@@ -51,37 +51,37 @@ const password = document.getElementById("password")
 const form = document.getElementById("form")
 const errorElement = document.getElementById("error")
 
-form.addEventListener('submit', (e) => {
-    let message = []
+// form.addEventListener('submit', (e) => {
+//     let message = []
 
-    e.preventDefault()
+//     e.preventDefault()
 
-    if (email.value === '' || email.value == null) {
-        message.push("email is required")
-    }
+//     if (email.value === '' || email.value == null) {
+//         message.push("email is required")
+//     }
 
-    if (password.value.length <= 6) {
-        message.push("Password must be longer than 6 characters")
-    }
+//     if (password.value.length <= 6) {
+//         message.push("Password must be longer than 6 characters")
+//     }
 
-    if (password.value.length >= 20) {
-        message.push("password must be less than 20 characters")
-    }
+//     if (password.value.length >= 20) {
+//         message.push("password must be less than 20 characters")
+//     }
 
-    if (password.value === 'password') {
-        message.push("Password cannot be password")
-    }
+//     if (password.value === 'password') {
+//         message.push("Password cannot be password")
+//     }
 
-    if (message.length > 0) {
-        errorElement.innerText = message.join(', ')
-    }
+//     if (message.length > 0) {
+//         errorElement.innerText = message.join(', ')
+//     }
 
-    const values = document.querySelectorAll('input[class=checkbox]:checked')
+//     const values = document.querySelectorAll('input[class=checkbox]:checked')
 
-    console.log(values)
+//     console.log(values)
 
 
-})
+// })
 
 // END CREATE ACCOUNT
 
@@ -93,3 +93,11 @@ tinymce.init({
     menubar: false,
     branding: false,
 });
+
+
+// SUBMIT NOTIFY FORM
+
+const btnCreate = document.getElementById('btnCreate');
+btnCreate.onclick = function () {
+    window.location.href = "QuanLyThongBao.html";
+}

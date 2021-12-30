@@ -455,9 +455,32 @@ th {
     cursor: pointer;
 }
 
-.notify_content a {
+.notify_post {
+    padding: 16px 16px;
+    line-height: 1.5;
+    background-color: #edf7fa;
+    border: 1px solid rgb(231, 231, 231);
+}
+
+.notify_post h3 {
+    color: #0061ad;
+    font-weight: 300;
+}
+
+.notify_post a {
     text-decoration: none;
-    text-align: left;
+    opacity: 0.8;
+    line-height: 1.8;
+}
+
+.notify_post_info {
+    float: right;
+    opacity: 0.8;
+}
+
+.notify_post_info span:first-child {
+    border-right: 1px solid black;
+    padding-right: 10px;
 }
 /* END THÔNG BÁO */
 
@@ -488,7 +511,6 @@ th {
     padding: 50px 50px;
     border: 1px solid black;
     border-radius: 10px;
-    transform: translateY(-15%);
 }
 
 #intension .form_createNotify h1 {
