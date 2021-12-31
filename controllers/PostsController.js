@@ -3,12 +3,14 @@ const Comment = require("../models/CommentModel");
 const upload = require("../middlewares/upload/UploadImage");
 const validateUrlYoutube = require("../middlewares/validator/ValidateUrlYoutube");
 const fs = require("fs");
+const moment = require("moment");
 
 class PostsController{
     getAll(req, res){
         try {
             Posts.find()
                 .populate("postedBy comment")
+                .sort({ date: "desc" })
                 .exec(function (err, post) {
                     if (err) {
                         return res.end(
@@ -43,6 +45,7 @@ class PostsController{
             let _idPost = req.params._id;
             Posts.findOne({ _id: _idPost })
                 .populate("postedBy comment")
+                .sort({ date: "desc" })
                 .exec(function (err, post) {
                     if (err) {
                         return res.end(
@@ -78,6 +81,7 @@ class PostsController{
 
             Posts.find({ postedBy: _idUser })
                 .populate("postedBy comment")
+                .sort({ date: "desc" })
                 .exec(function (err, post) {
                     if (err) {
                         return res.end(
@@ -157,6 +161,7 @@ class PostsController{
                     content: content,
                     image: imagePath,
                     video: video,
+                    date: moment.utc().local(),
                 });
 
                 return res.end(

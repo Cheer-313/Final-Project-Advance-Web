@@ -1,12 +1,14 @@
 const Posts = require("../models/PostsModel");
 const Comment = require("../models/CommentModel");
 const upload = require("../middlewares/upload/UploadImage");
+const moment = require("moment");
 
 class CommentController {
     getAll(req, res) {
         try {
             Comment.find()
                 .populate("commentBy")
+                .sort({ date: "desc" })
                 .exec(function (err, comments) {
                     if (err) {
                         return res.end(
@@ -40,6 +42,7 @@ class CommentController {
         try {
             let _idComment = req.params._id;
             Comment.findOne({ _id: _idComment })
+                .sort({ date: "desc" })
                 .populate("commentBy")
                 .exec(function (err, comment) {
                     if (err) {
@@ -124,6 +127,7 @@ class CommentController {
                     userType: userType,
                     commentBy: req.user._id,
                     content: content,
+                    date: moment.utc().local(),
                 },
                 async function (error, comment) {
                     console.log(comment._id);
@@ -136,7 +140,7 @@ class CommentController {
                             })
                         );
                     } else {
-                        await Posts.findOneAndUpdate({_id: _idPost}, {$push: {comment: comment._id}},);
+                        await Posts.findOneAndUpdate({ _id: _idPost }, { $push: { comment: comment._id } });
                         return res.end(
                             JSON.stringify({
                                 code: 1,

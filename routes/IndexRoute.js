@@ -1,17 +1,14 @@
 const express = require("express");
 const indexRoute = express.Router();
-
+const check = require("../middlewares/check/Check");
 // Index route
-indexRoute.get("/", (req, res) => {
-    res.redirect("/login");
+indexRoute.get("/", check.checkLogin,(req, res) => {
+    return res.render("home", { title: "Home" });
 });
 
-indexRoute.get("/error", (req, res) => {
-    res.render("error");
-});
-
-indexRoute.get("/log", (req, res) => {
-    res.render("login");
-});
+indexRoute.get("/logout", (req, res) => {
+    req.logout();
+    return res.redirect('/login');
+})
 
 module.exports = indexRoute;

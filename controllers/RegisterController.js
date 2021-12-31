@@ -3,11 +3,12 @@ const uuid = require("short-uuid");
 const fs = require("fs");
 const {LocalUser} = require("../models/UserModel");
 const bcrypt = require("bcrypt");
+const moment = require("moment");
 
 class RegisterController {
     index (req, res){
         let message = req.flash("message");
-        return res.render('register', {message: message});
+        return res.render("createAccount", { title: "Tạo tài khoản", message: message });
     }
 
     register(req, res){
@@ -41,22 +42,26 @@ class RegisterController {
                     return res.redirect("/register");
                 }
 
-                await LocalUser.create({
-                    authId: "local:" + authId,
-                    username: username,
-                    password: hash,
-                    fullname: fullname,
-                    avatar: imagePath,
-                    role: role,
-                }, function(error, result){
-                    if(error){
-                        req.flash("message", error);
-                        return res.redirect("/register");
-                    } else{
-                        req.flash("Create successfully");
-                        return res.redirect("/login");
+                await LocalUser.create(
+                    {
+                        authId: "local:" + authId,
+                        username: username,
+                        password: hash,
+                        fullname: fullname,
+                        avatar: imagePath,
+                        role: role,
+                        time: moment.utc().local(),
+                    },
+                    function (error, result) {
+                        if (error) {
+                            req.flash("message", error);
+                            return res.redirect("/register");
+                        } else {
+                            req.flash("Create successfully");
+                            return res.redirect("/login");
+                        }
                     }
-                });
+                );
             });
         })
     }

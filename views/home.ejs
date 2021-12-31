@@ -1,3 +1,15 @@
-<p>Avatar: <%= user.avatar %> </p>
-<p>Fullname: <%= user.fullname %> </p>
-<p>Email: <%= user.email %> </p>
+<div id="main">
+
+    <%- include("./partials/header.ejs") %>
+
+    <div id="content">
+
+        <%- include("./partials/sidebar.ejs") %>
+
+        <br id="intension">
+            <a href="/register">Tạo tài khoản</a></br>
+            <a href="/noti/manage">Quản lý thông báo</a></br>
+            <a href="/profile/password">Đổi mật khẩu</a></br>
+        </div>
+    </div>
+</div>

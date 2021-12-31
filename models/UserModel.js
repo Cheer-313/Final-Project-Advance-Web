@@ -30,8 +30,8 @@ const googleSchema = mongoose.Schema({
         default: null,
     },
     time: {
-        type: String,
-        default: moment.utc().local().format("D-M-YYYY H:m:s"),
+        type: Date,
+        default: moment.utc().local(),
     },
 });
 
@@ -60,8 +60,8 @@ const localSchema = mongoose.Schema({
         default: null,
     },
     time: {
-        type: String,
-        default: moment.utc().local().format("D-M-YYYY H:m:s"),
+        type: Date,
+        default: moment.utc().local(),
     },
 });
 

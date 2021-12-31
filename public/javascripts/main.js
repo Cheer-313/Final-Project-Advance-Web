@@ -46,10 +46,10 @@ menuBtn.addEventListener("click", function () {
 
 // START CREATE ACCOUNT 
 
-const email = document.getElementById("email")
-const password = document.getElementById("password")
-const form = document.getElementById("form")
-const errorElement = document.getElementById("error")
+// const email = document.getElementById("email")
+// const password = document.getElementById("password")
+// const form = document.getElementById("form1")
+// const errorElement = document.getElementById("error")
 
 // form.addEventListener('submit', (e) => {
 //     let message = []

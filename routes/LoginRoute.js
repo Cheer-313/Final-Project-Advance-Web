@@ -39,7 +39,7 @@ require("../middlewares/passport/PassportLocal");
 // Route
 loginRoute.get('/', (req, res) => {
     let message = req.flash("message");
-    res.render('test', {message: message});
+    return res.render("index", { title: "Đăng nhập", message: message });
 })
 
 loginRoute.get("/auth/google",
@@ -49,17 +49,17 @@ loginRoute.get("/auth/google",
 );
 
 loginRoute.post("/auth/local",
-    passport.authenticate('local', { failureRedirect: '/error' }),
+    passport.authenticate('local', { failureRedirect: '/login' }),
     function(req, res) {
         console.log(req.user);
-        res.redirect('/profile');
+        return res.redirect('/');
     }
 );
 
 loginRoute.get(
     "/auth/google/callback",
     passport.authenticate("google", {
-        successRedirect: "/profile",
+        successRedirect: "/",
         failureRedirect: "/login",
     })
 );
