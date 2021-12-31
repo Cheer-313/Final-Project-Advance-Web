@@ -1,15 +1,3 @@
-// DATATABLES PLUGIN
-
-// notify view
-$(document).ready(function () {
-    $("#notiTable").DataTable({ bSort: false });
-});
-
-// manageNotify view
-$(document).ready(function () {
-    $("#manageNotifyTable").DataTable();
-});
-
 // START DROPDOWN SIDEBAR
 let dropdown = document.getElementById("js-dropdown-btn");
 let menuBtn = document.getElementById("js-menu-mobile-btn");
@@ -102,9 +90,23 @@ tinymce.init({
     branding: false,
 });
 
-// SUBMIT NOTIFY FORM
+// DATATABLES PLUGIN
 
-const btnCreate = document.getElementById("btnCreate");
-btnCreate.onclick = function () {
-    window.location.href = "QuanLyThongBao.html";
-};
+// notify view
+$(document).ready(function () {
+    $("#notiTable").DataTable({ bSort: false });
+});
+
+// manageNotify view
+$(document).ready(function () {
+    $("#manageNotifyTable").DataTable();
+});
+
+// SOCKET
+const socket = io();
+
+// Get infor notification from server
+socket.on("notify", (noti) => {
+    console.log(noti);
+    alert(noti.title);
+});

@@ -143,7 +143,7 @@ class ApiPostsController{
                 }
 
                 // Vaidator URL Youtube
-                if(video && !validateUrlYoutube(video)){
+                if (video && !validateUrlYoutube(video)) {
                     return res.end(
                         JSON.stringify({
                             code: 0,
