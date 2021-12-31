@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <title>Quản lý tài khoản</title>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+</head>
+<body>
+    <div id="header">
+        <a href="./home.html"><img src="../img/logo.png" class="logo"></a>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Tìm kiếm ...">
+        </div>
+        <div class="head-user-icon" > <!--bug-->
+            <img src="../img/img-1.jpg" alt="">
+            <p>Nguyễn Văn A  <i class="fas fa-sort-down" id="set-menu"></i></p>
+        </div>
+        <!--menu-->
+        <div class="setting-menu" id="setting-menu">
+            <ul class="menu">
+                <li><a href="../views/profile.html">Xem trang cá nhân</a></li>
+                <li><a href="">Quản lý</a></li>
+                <li><a href="">Quản lý thông báo</a></li>
+                <li><a href="">Thay đổi mật khẩu</a></li>
+                <li><a href="">Đăng xuất</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div id="newfeed">
+        <!---->
+        <div class="left-sidebar">
+            <div class="left-menu">
+                
+                <ul><h2>ADMIN</h2><br>
+                    <li><i class="fas fa-user-alt"></i><a href="#">Tài khoản</a></li>
+                    <li><i class="fas fa-bell"></i><a href="#">Thông báo</a> </li>
+                    <li><i class="fas fa-clone"></i><a href="#">Bài đăng</a></li>
+                    <li><i class="fas fa-comments"></i><a href="#">Bình luận</a></li>
+                </ul>
+            </div>
+        </div>
+        <!---->
+        <div class="container">
+            <div class="h2">
+                <h2>QUẢN LÝ TÀI KHOẢN</h2>
+            </div>
+            <button class="btn-create-acc">Tạo tài khoản mới</button>
+            <div class="table-acc">
+
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tên hiển thị</th>
+                      <th>Tên đăng nhập</th>
+                      <th>Khoa</th>
+                      <th>Mật khẩu</th>
+                      <th>Tác vụ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>John</td>
+                      <td>cntt</td>
+                      <td>Doe</td>
+                      <td>john@example.com</td>
+                      <td>
+                            <a href="#" target="_self">Xem </a><span>|</span>
+                            <a href="#" id="modaledit-3">Sửa </a><span>|</span>
+                            <a href="#" >Xoá</a>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>John</td>
+                        <td>cntt</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                        <td>
+                              <a href="#" target="_self">Xem </a><span>|</span>
+                              <a href="#" id="modaledit-3">Sửa </a><span>|</span>
+                              <a href="#" >Xoá</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>John</td>
+                        <td>cntt</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                        <td>
+                              <a href="#" target="_self">Xem </a><span>|</span>
+                              <a href="#" id="modaledit-3">Sửa </a><span>|</span>
+                              <a href="#" >Xoá</a>
+                        </td>
+                      </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Mary</td>
+                      <td>cntt</td>
+                      <td>Moe</td>
+                      <td>mary@example.com</td>
+                      <td>
+                        <a href="#" target="_self">Xem </a><span>|</span>
+                        <a href="#" id="modaledit-3">Sửa </a><span>|</span>
+                        <a href="#" >Xoá</a>
+                  </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>cntt</td>
+                      <td>July</td>
+                      <td>Dooley</td>
+                      <td>july@example.com</td>
+                      <td>
+                        <a href="#" target="_self">Xem </a><span>|</span>
+                        <a href="#" id="modaledit-3">Sửa </a><span>|</span>
+                        <a href="#" >Xoá</a>
+                  </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a class="active" href="#">1</a>
+                <a  href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">7</a>
+                <a href="#">&raquo;</a>
+              </div>  
+              <div class="clear"></div> 
+              <div><br></div>
+          </div>
+          <div id="myModal-3" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" id="close-edit-acc">&times;</span>
+              <div>
+                  <form action="#" method="post">
+
+                    <h3>CHỈNH SỬA TÀI KHOẢN</h3>
+                    <div class="name-edit">
+                        <label for="edit-name-acc">Tên hiển thị</label><br>
+                        <input type="text" id="edit-name-acc" placeholder="Nhập tên">
+                    </div>
+                    <div class="name-edit">
+                        <label for="edit-username-acc">Tên đăng nhập</label><br>
+                        <input type="text" id="edit-username-acc" placeholder="Nhập tên đăng nhập">
+                    </div>
+                    <div class="name-edit">
+                        <label for="edit-pass-acc">Mật khẩu</label><br>
+                        <input type="text" id="edit-pass-acc" placeholder="Nhập mật khẩu">
+                    </div>
+                      <div class="modal-footer">
+                            <button type="button"  id="saveModalButton-3">Lưu thay đổi</button>
+                        </div>
+                  </form>
+              </div>
+            </div>            
+        </div>
+    </div>
+        
+        
+    </div>
+    <div id="footer">
+        <p>Copyright 2021 - Student Tin Hung Giang</p>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../javascripts/script.js"></script>
+</body>
+</html>
