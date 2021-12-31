@@ -1,18 +1,18 @@
 const express = require("express");
 const postsRoute = express.Router();
-const PostsController = require("../../controllers/PostsController");
+const ApiPostsController = require("../../controllers/ApiPostsController");
 const {checkAuth, checkUser} = require("../../middlewares/check/Check");
 
-postsRoute.get('/', checkAuth.checkAuthAPI, PostsController.getAll);
+postsRoute.get('/', checkAuth.checkAuthAPI, ApiPostsController.getAll);
 
-postsRoute.get('/:_id', checkAuth.checkAuthAPI, PostsController.getById);
+postsRoute.get('/:_id', checkAuth.checkAuthAPI, ApiPostsController.getById);
 
-postsRoute.get('/user/:_idUser', checkAuth.checkAuthAPI, PostsController.getByUserId);
+postsRoute.get('/user/:_idUser', checkAuth.checkAuthAPI, ApiPostsController.getByUserId);
 
-postsRoute.post('/', checkAuth.checkAuthAPI, PostsController.createPost);
+postsRoute.post('/', checkAuth.checkAuthAPI, ApiPostsController.createPost);
 
-postsRoute.put('/:_id', checkAuth.checkAuthAPI, checkUser, PostsController.updatePost);
+postsRoute.put('/:_id', checkAuth.checkAuthAPI, checkUser, ApiPostsController.updatePost);
 
-postsRoute.delete("/:_id", checkAuth.checkAuthAPI, checkUser, PostsController.deletePost);
+postsRoute.delete("/:_id", checkAuth.checkAuthAPI, checkUser, ApiPostsController.deletePost);
 
 module.exports = postsRoute;

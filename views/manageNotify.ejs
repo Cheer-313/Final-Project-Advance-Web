@@ -10,70 +10,44 @@
                 <a href="/noti/create">Tạo thông báo mới</a>
             </div>
             <div class="notify_manage_content">
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Tên thông báo</th>
-                        <th>Người đăng</th>
-                        <th>Phòng/Ban</th>
-                        <th>Ngày đăng</th>
-                        <th></th>
-                    </tr>
-                    <% Object.keys(notification).forEach(index => { let noti = notification[index] %>
-                    <% let hrefDetail = noti.title.replace(/ /g, "-") + `-${noti._id}` %>
-                    <tr>
-                        <td><%= parseInt(index) + 1 %></td>
-                        <td> <a href="<%= hrefDetail %>"><%= noti.title %></a></td>
-                        <td><%= noti.createBy.fullname %></td>
-                        <td><%= noti.division %></td>
-                        <td><%= moment(noti.date).format("D-M-YYYY") %></td>
-                        <td>
-                            <a href="/noti/edit/<%= noti._id %>">Chỉnh sửa</a>
-                            <a href="/noti/delete/<%= noti._id %>">Xoá</a>
-                        </td>
-                    </tr>
-                    <% }); %>
+                <table id="manageNotifyTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên thông báo</th>
+                            <th>Người đăng</th>
+                            <th>Phòng/Ban</th>
+                            <th>Ngày đăng</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% Object.keys(notification).forEach(index=> { let noti = notification[index] %>
+                        <% let hrefDetail=noti.title.replace(/ /g, "-" ) + `-${noti._id}` %>
+                        <tr>
+                            <td>
+                                <%= parseInt(index) + 1 %>
+                            </td>
+                            <td> <a href="<%= hrefDetail %>">
+                                    <%= noti.title %>
+                                </a></td>
+                            <td>
+                                <%= noti.createBy.fullname %>
+                            </td>
+                            <td>
+                                <%= noti.division %>
+                            </td>
+                            <td>
+                                <%= moment(noti.date).format("D-M-YYYY") %>
+                            </td>
+                            <td>
+                                <a href="/noti/edit/<%= noti._id %>">Chỉnh sửa</a>
+                                <a href="/noti/delete/<%= noti._id %>">Xoá</a>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
                 </table>
-            </div>
-
-            <!-- pagination -->
-            <div class="row">
-                <!-- hiển thị phân trang nếu có trang -->
-            <% if(pages > 0) { %>
-                <nav class="mx-auto">
-                    <ul class="pagination" style="margin-top: 2rem;">
-                    
-                        <!-- FIRST ITEM -->  
-                        <li class="page-item <%= (currentPage == 1)? "disabled": "" %>">
-                            <a class="page-link" href="/noti/manage">First</a>
-                        </li>
-                    
-                    <!-- ITEMS  -->
-                    <% let index = (currentPage > 3 ? currentPage - 2 : 1) %> 
-            
-                    <% if(index !== 1) { %>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">...</a>
-                        </li>
-                    <% } %>
-                    
-                    <% for(; index <= (currentPage + 2) && index <= pages; index++) { %>
-                        <li class="page-item <%= (index == currentPage)? "active":""%>">
-                            <a class="page-link" href="/noti/manage/<%= index %>/"><%= index %></a>
-                        </li>
-                    <% } %>
-
-                    <% if (index == currentPage + 2 && index < pages) { %>
-                        <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
-                    <% } %>
-                    
-                        <!-- LAST ITEM -->
-                        <li class="page-item <%= (currentPage == pages)? "disabled": "" %>">
-                            <a class="page-link" href="/noti/manage/<%= pages %>">Last</a>
-                        </li>
-                    </ul>
-                </nav>
-                <% } %>
             </div>
         </div>
     </div>

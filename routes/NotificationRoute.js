@@ -9,10 +9,6 @@ notiRoute.get("/manage/", checkAuth.checkAuthSystem, checkRole.AdminRole, notiCo
 
 notiRoute.get("/manage/", checkAuth.checkAuthSystem, checkRole.DivisionRole, notiController.manageDivisionView);
 
-notiRoute.get("/manage/:page", checkAuth.checkAuthSystem, checkRole.AdminRole, notiController.manageAdminView);
-
-notiRoute.get("/manage/:page", checkAuth.checkAuthSystem, checkRole.DivisionRole, notiController.manageDivisionView);
-
 notiRoute.get("/create", checkAuth.checkAuthSystem, checkRole.AdminOrDivisionRole, notiController.createNotiView);
 
 notiRoute.post("/create", checkAuth.checkAuthSystem, checkRole.AdminOrDivisionRole, notiController.createNoti);

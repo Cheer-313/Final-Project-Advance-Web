@@ -1,18 +1,18 @@
 const express = require("express");
 const commentRoute = express.Router();
-const CommentController = require("../../controllers/CommentController");
+const ApiCommentController = require("../../controllers/ApiCommentController");
 const { checkAuth, checkUser } = require("../../middlewares/check/Check");
 
-commentRoute.get("/", checkAuth.checkAuthAPI, CommentController.getAll);
+commentRoute.get("/", checkAuth.checkAuthAPI, ApiCommentController.getAll);
 
-commentRoute.get("/:_id", checkAuth.checkAuthAPI, CommentController.getById);
+commentRoute.get("/:_id", checkAuth.checkAuthAPI, ApiCommentController.getById);
 
-commentRoute.get("/user/:_idUser", checkAuth.checkAuthAPI, CommentController.getByUserId);
+commentRoute.get("/user/:_idUser", checkAuth.checkAuthAPI, ApiCommentController.getByUserId);
 
-commentRoute.post("/", checkAuth.checkAuthAPI, CommentController.createComment);
+commentRoute.post("/", checkAuth.checkAuthAPI, ApiCommentController.createComment);
 
-commentRoute.put("/:_id", checkAuth.checkAuthAPI, checkUser, CommentController.updateComment);
+commentRoute.put("/:_id", checkAuth.checkAuthAPI, checkUser, ApiCommentController.updateComment);
 
-commentRoute.delete("/:_id", checkAuth.checkAuthAPI, checkUser, CommentController.deleteComment);
+commentRoute.delete("/:_id", checkAuth.checkAuthAPI, checkUser, ApiCommentController.deleteComment);
 
 module.exports = commentRoute;

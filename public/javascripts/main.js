@@ -1,3 +1,15 @@
+// DATATABLES PLUGIN
+
+// notify view
+$(document).ready(function () {
+    $("#notiTable").DataTable({ bSort: false });
+});
+
+// manageNotify view
+$(document).ready(function () {
+    $("#manageNotifyTable").DataTable();
+});
+
 // START DROPDOWN SIDEBAR
 let dropdown = document.getElementById("js-dropdown-btn");
 let menuBtn = document.getElementById("js-menu-mobile-btn");
@@ -9,12 +21,10 @@ dropdown.addEventListener("click", function () {
         dropdownContent.style.display = "none";
     } else {
         dropdownContent.style.display = "block";
-
     }
 });
 
 menuBtn.addEventListener("click", function () {
-
     if (menuDropdown.style.display === "block") {
         menuDropdown.style.display = "none";
     } else {
@@ -43,8 +53,7 @@ menuBtn.addEventListener("click", function () {
 
 // END PAGES NOTIFY
 
-
-// START CREATE ACCOUNT 
+// START CREATE ACCOUNT
 
 // const email = document.getElementById("email")
 // const password = document.getElementById("password")
@@ -80,24 +89,22 @@ menuBtn.addEventListener("click", function () {
 
 //     console.log(values)
 
-
 // })
 
 // END CREATE ACCOUNT
 
 // TINYMCE
 tinymce.init({
-    selector: '#mytextarea',
-    plugins: 'lists',
-    toolbar: 'undo redo | bold italic underline | numlist bullist',
+    selector: "#mytextarea",
+    plugins: "lists",
+    toolbar: "undo redo | bold italic underline | numlist bullist",
     menubar: false,
     branding: false,
 });
 
-
 // SUBMIT NOTIFY FORM
 
-const btnCreate = document.getElementById('btnCreate');
+const btnCreate = document.getElementById("btnCreate");
 btnCreate.onclick = function () {
     window.location.href = "QuanLyThongBao.html";
-}
+};

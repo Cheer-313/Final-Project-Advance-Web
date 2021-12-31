@@ -3,7 +3,7 @@ const Comment = require("../models/CommentModel");
 const upload = require("../middlewares/upload/UploadImage");
 const moment = require("moment");
 
-class CommentController {
+class ApiCommentController {
     getAll(req, res) {
         try {
             Comment.find()
@@ -243,4 +243,4 @@ class CommentController {
 
 }
 
-module.exports = new CommentController();
+module.exports = new ApiCommentController();

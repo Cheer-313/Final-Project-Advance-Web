@@ -5,7 +5,7 @@ const validateUrlYoutube = require("../middlewares/validator/ValidateUrlYoutube"
 const fs = require("fs");
 const moment = require("moment");
 
-class PostsController{
+class ApiPostsController{
     getAll(req, res){
         try {
             Posts.find()
@@ -302,4 +302,4 @@ class PostsController{
     }
 }
 
-module.exports = new PostsController();
+module.exports = new ApiPostsController();

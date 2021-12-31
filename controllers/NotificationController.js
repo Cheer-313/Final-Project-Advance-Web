@@ -5,7 +5,23 @@ const moment = require("moment")
 
 class Notification {
     notiView(req, res){
-        return res.end("noti");
+        try {
+            Noti.find()
+                .populate("createBy")
+                .sort({ date: "desc" })
+                .exec(function (error, noti) {
+                    if (error) {
+                        let message = "Error when get data";
+                        return res.render("notify", { title: "Thông báo", message: message });
+                    }
+                    // Message from create, update method
+                    let message = req.flash("message");
+                    return res.render("notify", { title: "Thông báo", notification: noti, message: message });
+                });
+        } catch (error) {
+            let message = "Error: " + error;
+            return res.render("notify", { title: "Thông báo", message: message });
+        }
     }
 
     detailNotiView(req, res){
@@ -22,14 +38,8 @@ class Notification {
     }
 
     manageAdminView(req, res) {
-        try {
-            let perPage = parseInt(process.env.PAGE_SIZE);
-            let page = req.params.page || 1;
-            let skipPage = perPage * page - perPage < 0 ? 0 : perPage * page - perPage;
-            
+        try {     
             Noti.find()
-                .skip(skipPage)
-                .limit(perPage)
                 .populate("createBy")
                 .sort({ date: "desc" })
                 .exec(async function (error, noti) {
@@ -38,10 +48,8 @@ class Notification {
                         return res.render("manageNotify", { title: "Quản lý thông báo", message: message });
                     }
                     // Message from create, update method
-                    const count = await Noti.countDocuments()
-
                     let message = req.flash("message");
-                    return res.render("manageNotify", { title: "Quản lý thông báo", notification: noti, message: message, currentPage: parseInt(page), pages: Math.ceil(count / perPage) });
+                    return res.render("manageNotify", { title: "Quản lý thông báo", notification: noti, message: message });
                 });
         } catch (error) {
             let message = "Error: " + error;
@@ -51,13 +59,7 @@ class Notification {
 
     manageDivisionView(req, res) {
         try {
-            let perPage = parseInt(process.env.PAGE_SIZE);
-            let page = req.params.page || 1;
-            let skipPage = perPage * page - perPage < 0 ? 0 : perPage * page - perPage;
-
             Noti.find({ createBy: req.user._id, division: { $ne: null } })
-                .skip(skipPage)
-                .limit(perPage)
                 .populate("createBy")
                 .sort({ date: "desc" })
                 .exec(async function (error, noti) {
@@ -68,10 +70,8 @@ class Notification {
                     }
 
                     // Message from create, update method
-                    const count = await Noti.countDocuments()
-
                     let message = req.flash("message");
-                    return res.render("manageNotify", { title: "Quản lý thông báo", notification: noti, message: message, currentPage: parseInt(page), pages: Math.ceil(count / perPage) })
+                    return res.render("manageNotify", { title: "Quản lý thông báo", notification: noti, message: message})
                 });
         } catch (error) {
             console.log(error);

@@ -1,0 +1,50 @@
+<div id="main">
+    <%- include("./partials/header.ejs") %>
+
+    <div id="content">
+        <%- include("./partials/sidebar.ejs") %>
+
+        <div id="notify_manage">
+            <div class="notify_search">
+                <form action="">
+                    <label for="department">Phòng/Ban:</label>
+                    <select name="department" id="department">
+                        <% division.forEach(role=> { %>
+                            <option value="<%= role %>"><%= role %></option>
+                        <% }); %>
+                    </select>
+                    <input type="button" value="Tìm kiếm">
+                </form>
+            </div>
+
+            <table class="list_notify" id="notiTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% Object.keys(notification).forEach(index=> { let noti = notification[index] %>
+                    <% let hrefDetail=noti.title.replace(/ /g, "-" ) + `-${noti._id}` %>
+                    <tr>
+                        <td>
+                            <div class="notify_post">
+                                <a href="<%= hrefDetail %>">
+                                    <h3>
+                                        <%= noti.title %>
+                                    </h3>
+                                </a>
+                                <div class="notify_post_info">
+                                    <span><%= noti.division %></span>
+                                    <span>Ngày đăng: <%= moment(noti.date).format("D-M-YYYY") %></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+                
+        </div>
+    </div>
+</div>
