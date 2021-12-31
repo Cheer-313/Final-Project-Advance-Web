@@ -388,11 +388,11 @@ html {
     opacity: 0.8;
 }
 
-#notify_manage td,
+#notify_manage .notify_manage_content td,
 th {
-    border: 1px solid #dddddd;
     text-align: center;
     padding: 16px 8px;
+    border: 1px solid #dddddd;
 }
 
 .notify_manage_content a {
@@ -453,6 +453,12 @@ th {
     border-radius: 10px;
     margin-left: 20px;
     cursor: pointer;
+}
+
+.list_notify th {
+    font-size: 25px;
+    background-color: #0067ac;
+    color: #fff;
 }
 
 .notify_post {
