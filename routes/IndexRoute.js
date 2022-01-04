@@ -1,6 +1,7 @@
 const express = require("express");
 const indexRoute = express.Router();
 const check = require("../middlewares/check/Check");
+
 // Index route
 indexRoute.get("/", check.checkLogin,(req, res) => {
     return res.render("home", { title: "Home" });

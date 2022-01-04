@@ -3,7 +3,7 @@ const postsRoute = express.Router();
 const ApiPostsController = require("../../controllers/ApiPostsController");
 const {checkAuth, checkUser} = require("../../middlewares/check/Check");
 
-postsRoute.get('/', checkAuth.checkAuthAPI, ApiPostsController.getAll);
+postsRoute.get('/page/:page', checkAuth.checkAuthAPI, ApiPostsController.getAll);
 
 postsRoute.get('/:_id', checkAuth.checkAuthAPI, ApiPostsController.getById);
 

@@ -13,4 +13,6 @@ profileRoute.get("/edit", checkAuth.checkAuthSystem, checkRole.StudentRole, prof
 
 profileRoute.post("/edit", checkAuth.checkAuthSystem, checkRole.StudentRole, profileController.editProfile);
 
+profileRoute.get("/:_id", checkAuth.checkAuthSystem, profileController.index);
+
 module.exports = profileRoute;

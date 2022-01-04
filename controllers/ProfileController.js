@@ -2,13 +2,29 @@ const bcrypt = require("bcrypt");
 const {LocalUser, GoogleUser} = require('../models/UserModel');
 const upload = require("../middlewares/upload/UploadImage");
 const fs = require("fs");
-
+const faculty = require("../const/faculty");
+const { profile } = require("console");
 
 class ProfileController {
 
     // Render view /profile
-    index(req, res){
-        return res.render('profile')
+    async index(req, res){
+        let message = req.flash("message")[0];
+        let _idUser = req.params._id;
+        if(_idUser){
+            let localUser = await LocalUser.findOne({_id:_idUser});
+
+            if(localUser){
+                return res.render("profile", {title: localUser.fullname, user: localUser, currentUser: req.user});
+            } else{
+                let googleUser = await googleUser.findOne({ _id: _idUser });
+                
+                if (googleUser){
+                    return res.render("profile", { title: googleUser.fullname, user: googleUser, currentUser: req.user });
+                }
+            }
+        }
+        return res.render("profile", { title: req.user.fullname, user: req.user, message: message, faculty: faculty, currentUser: req.user });
     }
 
     // Render view /profile/password
@@ -50,38 +66,44 @@ class ProfileController {
 
                     await LocalUser.findOneAndUpdate({ authId: req.user.authId }, { password: hash });
                     req.flash("message", "Update successfully");
-                    return res.redirect("/profile/password");
+                    return res.redirect("/profile");
                 });
             }
         } catch (error) {
-            req.flash("changePassword", error);
-            return res.redirect("/profile/password");
+            req.flash("message", error);
+            return res.redirect("/profile");
         }
     }
 
     // Edit profile for student role
     editProfile(req, res){
         try {
-            let handler = upload.single('avatar');
-            handler(req, res, async error => {
+            // Get old image path
+            let oldProfile = Posts.findOne({ _id: _idPost });
+            let imagePath = oldProfile.avatar;
+
+            let handler = upload.single("avatar");
+            handler(req, res, async (error) => {
+                // Get old path of avatar
                 let imagePath = req.user.avatar;
+
                 let avatar = req.file;
 
                 console.log(avatar);
-                
-                if(error){
+
+                if (error) {
                     req.flash("message", "Image is to large!");
                     return res.redirect("/profile/edit");
                 }
-                if(avatar){
+                if (avatar) {
                     // Get authId except google or local
-                    let folder = (req.user.authId.substring(0, 6) == "google") ? req.user.authId.substring(7) : req.user.authId.substring(6);
-                    
+                    let folder = req.user.authId.substring(0, 6) == "google" ? req.user.authId.substring(7) : req.user.authId.substring(6);
+
                     let newPath = `uploads/${folder}`;
-                    if(!fs.existsSync(newPath)){
+                    if (!fs.existsSync(newPath)) {
                         fs.mkdirSync(newPath);
                     }
-                    
+
                     imagePath = newPath + `/${avatar.originalname}`;
 
                     fs.unlink(req.user.avatar, (err) => {
@@ -106,11 +128,12 @@ class ProfileController {
                     }
                 );
                 req.flash("message", "Update successfully");
-                return res.redirect("/profile/password");
+                return res.redirect("/profile");
             });
         }
         catch (error) {
-            return res.end(error);
+            req.flash("message", error);
+            return res.redirect("/profile");
         }
     }
 }

@@ -8,8 +8,14 @@ const moment = require("moment");
 class ApiPostsController{
     getAll(req, res){
         try {
+            let perPage = parseInt(process.env.PAGE_SIZE);
+            let page = parseInt(req.params.page) || 1;
+            let skipPage = perPage * page - perPage < 0 ? 0 : perPage * page - perPage;
+
             Posts.find()
                 .populate("postedBy comment")
+                .skip(skipPage)
+                .limit(perPage)
                 .sort({ date: "desc" })
                 .exec(function (err, post) {
                     if (err) {
@@ -21,6 +27,7 @@ class ApiPostsController{
                             })
                         );
                     }
+                    console.log(post)
                     return res.end(
                         JSON.stringify({
                             code: 1,

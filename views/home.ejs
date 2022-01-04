@@ -1,70 +1,165 @@
-<div class="container">
-    <a href="/register">Tạo tài khoản</a>
-    </br>
-    <a href="/noti/manage">Quản lý thông báo</a>
-    </br>
-    <a href="/profile/password">Đổi mật khẩu</a>
-    </br>
-    <a href="/test">Test api</a>
-    
-    <form action="/api/posts/" id="formCreatePost">
-        <h3>Create Post</h3>
-        <div class="mb-3">
-            <label class="form-label">Content</label>
-            <input type="text" class="form-control" name="content">
-        </div>
-    
-        <div class="mb-3">
-            <label class="form-label">URL Youtube:</label>
-            <input type="text" class="form-control" name="video">
-        </div>
-    
-        <div class="mb-3">
-            <label class="form-label">Content</label>
-            <input type="file" class="form-control" id="imagePost" name="imagePost">
-        </div>
-    
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<!--nội dung chính-->
+<div id="main">
 
-    <form action="/api/posts/" id="formUpdatePost">
-        <h3>Update Post</h3>
-        <div class="mb-3">
-            <label class="form-label">Content</label>
-            <input type="text" class="form-control" name="content">
-        </div>
-    
-        <div class="mb-3">
-            <label class="form-label">URL Youtube:</label>
-            <input type="text" class="form-control" name="video">
-        </div>
-    
-        <div class="mb-3">
-            <label class="form-label">Content</label>
-            <input type="file" class="form-control" id="imagePost" name="imagePost">
-        </div>
-    
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <%- include("./partials/header.ejs") %>
 
-    <form action="/api/posts/" id="formCommentPost">
-        <h3>Create Post</h3>
-        <div class="mb-3">
-            <label class="form-label">Content</label>
-            <input type="text" class="form-control" name="content">
+    <div id="content">
+
+        <%- include("./partials/sidebar.ejs") %>
+
+        <div id="intension">
+                <div class="main-content">
+                    <!--đăng nội dung-->
+                    <div class="write-post-container">
+                        <div class="avt-icon">
+                            <a href="./profile.html"><img src="../img/img-1.jpg" alt=""></a>
+                            <p>Nguyễn Văn A</p>
+            
+                        </div>
+                        <form action="/api/posts/" class="stt-input" id="formCreatePost" method="post">
+                            <textarea rows="3" placeholder="Bạn ơi nghĩ gì thế?" name="content"></textarea>
+
+                            <label for="Video"></label>
+                            <input type="text" name="video" placeholder="Enter URL youtube">
+
+                            <label for="image">Image</label>
+                            <input type="file" name="imagePost" id="">
+
+                            <div class="add-post-link">
+                                <a href="#"><i class="fas fa-video"></i> Video</a>
+                                <a href="#"><i class="fas fa-images"></i> Hình ảnh</a>
+                                <button type="submit">Đăng</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--các bài post-->
+                    <div class="post-container">
+                        <div class="post">
+                            <div class="post-row">
+                                <div class="user-profile">
+                                    <img src="../img/avt.jpg" alt="">
+                                    <div>
+                                        <p>Nguyễn Văn A</p>
+                                        <span>29-Dec-21 10:59pm</span>
+                                    </div>
+                                </div>
+                                <a href="#"><i class="fas fa-ellipsis-v" id="set-stt"></i></a>
+                                <div class="setting-stt" id="setting-stt">
+                                    <ul class="menu">
+                                        <li>Chỉnh sửa</li>
+                                        <li>Xoá</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p class="post-text">Chúc mọi người Tết vui vẻ</p>
+                            <img src="../img/download.jpg" class="post-img">
+                            <div class="post-act">
+                                <div>
+                                    <i class="far fa-comment-dots"></i>
+                                    Bình luận
+                                </div>
+                            </div>
+                            <div class="post-cmt">
+                                <div class="cmts">
+                                    <img src="../img/avt.jpg" alt="">
+                                    <span>
+                                        <b>Nguyễn Văn B
+                                            <small>
+                                                <i>&ensp; 30-Dec-21 2:04pm</i>
+                                            </small>&emsp;
+                                            <i class="fas fa-ellipsis-v" id="set-cmt"></i>
+                                        </b>
+            
+                                        <p>lorem Đẹp quá quá đẹp Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi culpa itaque reiciendis, labore, excepturi quas unde corporis, molestiae sint soluta maiores ut earum impedit. Harum accusantium tempore expedita odio sint?</p>
+            
+                                    </span>
+                                    <div>
+                                        <div class="setting-cmt" id="setting-cmt">
+                                            <ul class="menu">
+                                                <li><a href="">Chỉnh sửa</a></li>
+                                                <li><a href="">Xoá</a></li>
+            
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-cmts">
+                                    <div>
+            
+                                        <img src="../img/avt.jpg" alt="">
+                                        <input type="text" placeholder="Nhập nội dung">
+                                        <button>Đăng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="right-sidebar">
+                    <div class="new-notices">
+                        <div class="head-notice">
+                            <div class="caption-notice">
+                                <span>
+                                    <img src="../img/new.png">
+                                    THÔNG BÁO MỚI
+                                </span>
+                                <a href="#">Xem tất cả</a>
+                            </div>
+                        </div>
+                        <div class="notices">
+                            <ul>
+                                <li class="green">
+                                    <div class="messages">
+                                        <small><i>[Phòng Đại học] - 30/12/2021</i></small>
+                                        <br>
+                                        <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
+                                        <br>
+                                        <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
+                                    </div>
+                                </li>
+                                <li class="white">
+                                    <div class="messages">
+                                        <small><i>[Phòng Đại học] - 30/12/2021</i></small>
+                                        <br>
+                                        <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
+                                        <br>
+                                        <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
+                                    </div>
+                                </li>
+                                <li class="green">
+                                    <div class="messages">
+                                        <small><i>[Phòng Đại học] - 30/12/2021</i></small>
+                                        <br>
+                                        <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
+                                        <br>
+                                        <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
+                                    </div>
+                                </li>
+                                <li class="white">
+                                    <div class="messages">
+                                        <small><i>[Phòng Đại học] - 30/12/2021</i></small>
+                                        <br>
+                                        <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
+                                        <br>
+                                        <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
+                                    </div>
+                                </li>
+                                <li class="green">
+                                    <div class="messages">
+                                        <small><i>[Phòng Đại học] - 30/12/2021</i></small>
+                                        <br>
+                                        <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
+                                        <br>
+                                        <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
+                                    </div>
+                                </li>
+            
+                            </ul>
+                        </div>
+                    </div>
+                </div>            
         </div>
-    
-        <div class="mb-3">
-            <label class="form-label">URL Youtube:</label>
-            <input type="text" class="form-control" name="video">
-        </div>
-    
-        <div class="mb-3">
-            <label class="form-label">Content</label>
-            <input type="file" class="form-control" id="imagePost" name="imagePost">
-        </div>
-    
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
 </div>
 <script src="/javascripts/callAPI.js"></script>

@@ -12,9 +12,13 @@
         <% }); %>
     </div>
 
-    <% if(user || user.role !== "Student"){ %>
+    <% if(user && user.role !== "Student"){ %>
         <li>
             <a href="/noti/manage"><i class="icon ti-layout"></i>Quản lý thông báo</a>
         </li>
     <% } %>
+
+    <li>
+        <a href="/test">Test Api</a>
+    </li>
 </div>
