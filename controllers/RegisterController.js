@@ -19,14 +19,14 @@ class RegisterController {
             let { username, password, fullname, role } = req.body;
 
             // Set default avatar path
-            let imagePath = "uploads/default/user.png";
+            let imagePath = "/uploads/default/user.png";
 
             if(error){
                 req.flash("message", error);
                 return res.redirect("/register");
             }
             if(avatar){
-                let newPath = `uploads/${authId}/avatar`;
+                let newPath = `/uploads/${authId}/avatar`;
                 if (!fs.existsSync(newPath)) {
                     fs.mkdirSync(newPath);
                 }
@@ -58,7 +58,7 @@ class RegisterController {
                             return res.redirect("/register");
                         } else {
                             req.flash("Create successfully");
-                            return res.redirect("/login");
+                            return res.redirect("/");
                         }
                     }
                 );

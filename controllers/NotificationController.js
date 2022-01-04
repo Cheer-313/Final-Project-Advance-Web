@@ -6,18 +6,38 @@ const moment = require("moment")
 class Notification {
     notiView(req, res){
         try {
-            Noti.find()
-                .populate("createBy")
-                .sort({ date: "desc" })
-                .exec(function (error, noti) {
-                    if (error) {
-                        let message = "Error when get data";
-                        return res.render("notify", { title: "Thông báo", message: message });
-                    }
-                    // Message from create, update method
-                    let message = req.flash("message");
-                    return res.render("notify", { title: "Thông báo", notification: noti, message: message });
-                });
+            let division = req.params.division;
+            if(division){
+                division = division.replace(/_/g, " ");
+                console.log(division)
+                Noti.find({division:division})
+                    .populate("createBy")
+                    .sort({ date: "asc" })
+                    .exec(function (error, noti) {
+                        if (error) {
+                            let message = "Error when get data";
+                            return res.render("notify", { title: "Thông báo", message: message });
+                        }
+                        console.log(noti)
+                        // Message from create, update method
+                        let message = req.flash("message");
+                        return res.render("notify", { title: "Thông báo", notification: noti, message: message });
+                    });
+            } else {
+                Noti.find()
+                    .populate("createBy")
+                    .sort({ date: "asc" })
+                    .exec(function (error, noti) {
+                        if (error) {
+                            let message = "Error when get data";
+                            return res.render("notify", { title: "Thông báo", message: message });
+                        }
+                        // Message from create, update method
+                        let message = req.flash("message");
+                        return res.render("notify", { title: "Thông báo", notification: noti, message: message });
+                    });
+            }
+            
         } catch (error) {
             let message = "Error: " + error;
             return res.render("notify", { title: "Thông báo", message: message });
@@ -118,7 +138,7 @@ class Notification {
                 let folder = req.user.authId.substring(6);
 
                 // Create path if it isnt existed
-                let newPath = `uploads/${folder}/notifications`;
+                let newPath = `/uploads/${folder}/notifications`;
                 if (!fs.existsSync(newPath)) {
                     fs.mkdirSync(newPath, { recursive: true });
                 }
@@ -187,7 +207,7 @@ class Notification {
                     let folder = req.user.authId.substring(6);
 
                     // Create path if it isnt existed
-                    let newPath = `uploads/${folder}/notifications`;
+                    let newPath = `/uploads/${folder}/notifications`;
                     if (!fs.existsSync(newPath)) {
                         fs.mkdirSync(newPath, { recursive: true });
                     }

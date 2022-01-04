@@ -10,35 +10,26 @@ class ProfileController {
     // Render view /profile
     async index(req, res){
         let message = req.flash("message")[0];
-        let _idUser = req.params._id;
-        if(_idUser){
-            let localUser = await LocalUser.findOne({_id:_idUser});
-
-            if(localUser){
-                return res.render("profile", {title: localUser.fullname, user: localUser, currentUser: req.user});
-            } else{
-                let googleUser = await googleUser.findOne({ _id: _idUser });
-                
-                if (googleUser){
-                    return res.render("profile", { title: googleUser.fullname, user: googleUser, currentUser: req.user });
-                }
+        let authId = req.params.authId;
+        if (authId) {
+            let typeUser = authId.substring(0, 6) == "google" ? "google" : "local";
+            if(typeUser === "google"){
+                let googleUser = await GoogleUser.findOne({ authId: authId });
+                return res.render("profile", { title: googleUser.fullname, profileUser: googleUser, currentUser: req.user, faculty: faculty });
+            } else if( typeUser === "local"){
+                let localUser = await LocalUser.findOne({ authId: authId });
+                return res.render("profile", { title: localUser.fullname, profileUser: localUser, currentUser: req.user, faculty: faculty });
             }
         }
-        return res.render("profile", { title: req.user.fullname, user: req.user, message: message, faculty: faculty, currentUser: req.user });
+        return res.render("profile", { title: req.user.fullname, profileUser: req.user, message: message, faculty: faculty, currentUser: req.user });
     }
 
     // Render view /profile/password
     password(req,res){
         let message = (req.flash("message")[0]);
-        return res.render("password", { message: message });
+        return res.render("changePassword", {title: "Thay đổi mật khẩu", message: message });
     }
 
-    edit(req,res){
-        let message = req.flash("message")[0];
-        return res.render("editProfile", {user: req.user, message: message });
-    }
-
-    // Change password for division role
     changePassword(req, res){
         try {
             let{password, newPassword, confirmPassword} = req.body;
@@ -78,10 +69,6 @@ class ProfileController {
     // Edit profile for student role
     editProfile(req, res){
         try {
-            // Get old image path
-            let oldProfile = Posts.findOne({ _id: _idPost });
-            let imagePath = oldProfile.avatar;
-
             let handler = upload.single("avatar");
             handler(req, res, async (error) => {
                 // Get old path of avatar
@@ -99,7 +86,7 @@ class ProfileController {
                     // Get authId except google or local
                     let folder = req.user.authId.substring(0, 6) == "google" ? req.user.authId.substring(7) : req.user.authId.substring(6);
 
-                    let newPath = `uploads/${folder}`;
+                    let newPath = `/uploads/${folder}`;
                     if (!fs.existsSync(newPath)) {
                         fs.mkdirSync(newPath);
                     }

@@ -65,8 +65,8 @@ const localSchema = mongoose.Schema({
     },
 });
 
-const GoogleUser = mongoose.model("google", googleSchema, "user");
-const LocalUser = mongoose.model("local", localSchema, "user");
+const GoogleUser = mongoose.model("google", googleSchema, "googleuser");
+const LocalUser = mongoose.model("local", localSchema, "localuser");
 
 module.exports = {
     GoogleUser,

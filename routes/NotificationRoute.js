@@ -5,6 +5,8 @@ const { checkRole, checkAuth } = require("../middlewares/check/Check");
 
 notiRoute.get("/", checkAuth.checkAuthSystem, notiController.notiView);
 
+notiRoute.get("/division/:division", checkAuth.checkAuthSystem, notiController.notiView);
+
 notiRoute.get("/manage/", checkAuth.checkAuthSystem, checkRole.AdminRole, notiController.manageAdminView);
 
 notiRoute.get("/manage/", checkAuth.checkAuthSystem, checkRole.DivisionRole, notiController.manageDivisionView);

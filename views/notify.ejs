@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     <% Object.keys(notification).forEach(index=> { let noti = notification[index] %>
-                    <% let hrefDetail=noti.title.replace(/ /g, "-" ) + `-${noti._id}` %>
+                    <% let hrefDetail="/noti/" + noti.title.replace(/ /g, "-" ) + `-${noti._id}` %>
                     <tr>
                         <td>
                             <div class="notify_post">

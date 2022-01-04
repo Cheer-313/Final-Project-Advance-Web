@@ -9,10 +9,10 @@ profileRoute.get("/password", checkAuth.checkAuthSystem, checkRole.DivisionRole,
 
 profileRoute.post("/password", checkAuth.checkAuthSystem, checkRole.DivisionRole, profileController.changePassword);
 
-profileRoute.get("/edit", checkAuth.checkAuthSystem, checkRole.StudentRole, profileController.edit);
+// profileRoute.get("/edit", checkAuth.checkAuthSystem, checkRole.StudentRole, profileController.edit);
 
 profileRoute.post("/edit", checkAuth.checkAuthSystem, checkRole.StudentRole, profileController.editProfile);
 
-profileRoute.get("/:_id", checkAuth.checkAuthSystem, profileController.index);
+profileRoute.get("/:authId", checkAuth.checkAuthSystem, profileController.index);
 
 module.exports = profileRoute;

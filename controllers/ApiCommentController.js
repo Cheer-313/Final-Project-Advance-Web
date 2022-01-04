@@ -110,6 +110,7 @@ class ApiCommentController {
     async createComment(req, res){
         try {
             let { content, _idPost } = req.body;
+            console.log(content, _idPost);
             let userType = req.user.authId.substring(0, 6) == "google" ? "google" : "local";
 
             if (!content) {

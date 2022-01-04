@@ -27,7 +27,6 @@ class ApiPostsController{
                             })
                         );
                     }
-                    console.log(post)
                     return res.end(
                         JSON.stringify({
                             code: 1,
@@ -140,7 +139,7 @@ class ApiPostsController{
                     // Get authId except google or local
                     let folder = req.user.authId.substring(0, 6) == "google" ? req.user.authId.substring(7) : req.user.authId.substring(6);
 
-                    let newPath = `uploads/${folder}/post`;
+                    let newPath = `/uploads/${folder}/post`;
                     if (!fs.existsSync(newPath)) {
                         fs.mkdirSync(newPath, { recursive: true });
                     }
@@ -215,8 +214,7 @@ class ApiPostsController{
                 if (imagePost) {
                     // Get authId except google or local
                     let folder = req.user.authId.substring(0, 6) == "google" ? req.user.authId.substring(7) : req.user.authId.substring(6);
-                    // let folder = "61c15ad4d2463136426be8ba";
-                    let newPath = `uploads/${folder}/post`;
+                    let newPath = `/uploads/${folder}/post`;
 
                     // Create new folder
                     if (!fs.existsSync(newPath)) {

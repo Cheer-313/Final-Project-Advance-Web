@@ -10,19 +10,21 @@
                             <!--đăng nội dung-->
                             <div class="user-information">
                                 <div class="user-avt">
-                                   <img src="<%= user.avatar %>" alt="">
+                                   <img src="<%= profileUser.avatar %>" alt="">
                                 </div>
                                 <div class="user-in4">
-                                    <% let studentCode = (user.email)? user.email.substring(0,8):"None"%>
+                                    <% let studentCode = (profileUser.email)? profileUser.email.substring(0,8):"None"%>
                                     
                                     <b>
-                                        <%= user.fullname %>
-                                        <% if(user._id == currentUser._id && user.role == "Student") { %>
+                                        <%= profileUser.fullname %>
+
+                                        <%# Only student role can edit profile %> 
+                                        <% if(profileUser._id == user._id && user.role == "Student") { %>
                                             &ensp;<i class="fas fa-pen-fancy" id="modaledit"></i>
                                         <% } %>
                                     </b>
-                                    <p><i>Khoa: </i> <%= user.faculty || "None" %></p>
-                                    <p><i>Lớp: </i> <%= user.class || "None" %></p>
+                                    <p><i>Khoa: </i> <%= profileUser.faculty || "None" %></p>
+                                    <p><i>Lớp: </i> <%= profileUser.class || "None" %></p>
                                     <p><i>MSSV: </i> <%=  studentCode %></p>
                                 </div>
                             </div>
@@ -33,18 +35,19 @@
                                 <div class="modal-content">
                                     <span class="close">&times;</span>
                                     <div>
-                                        <form action="#" method="post">
+                                        <form action="/profile/edit" method="post">
                     
                                             <h3>CHỈNH SỬA THÔNG TIN</h3>
                                             <div class="avt-edit">
                                                 <span>
-                                                    <img src="../img/img-1.jpg" id="edit-avt">
+                                                    <img src="<%= user.avatar %>" id="edit-avt">
                                                 </span>
                                             </div>
                                             <div class="name-edit">
                                                 <label for="name">Tên hiển thị</label><br>
-                                                <input type="text" id="edit-name" placeholder="Nhập tên">
+                                                <input type="text" name="fullname" id="edit-name" value="<%= user.fullname %>">
                                             </div>
+
                                             <div class="facl-edit">
                                                 <label for="edit-facl">Khoa</label><br>
                                                 <select name="faculty" id="edit-facl">
@@ -54,17 +57,14 @@
                                                     <% }); %>
                                                 </select>
                                             </div>
+
                                             <div class="class-edit">
                                                 <label for="edit-class">Lớp</label><br>
-                                                <select name="classes" id="edit-class">
-                                                    <option value="">Lớp</option>
-                                                    <option value="CNTT">18020201</option>
-                                                    <option value="Đ-ĐT">18020202</option>
-                                                    <option value="QTKD">18020203</option>
-                                                </select>
+                                                <input type="text" name="classname" id="edit-class" value="<%= user.class %>">
                                             </div>
+
                                             <div class="modal-footer">
-                                                <button type="button" id="saveModalButton" data-dismiss="modal">Lưu thay đổi</button>
+                                                <button type="submit" id="saveModalButton" data-dismiss="modal">Lưu thay đổi</button>
                                             </div>
                                         </form>
                                     </div>
