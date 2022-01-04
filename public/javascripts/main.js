@@ -19,6 +19,38 @@ menuBtn.addEventListener("click", function () {
         menuDropdown.style.display = "block";
     }
 });
+
+// START NEWFEED VIEWS
+
+let newfeed_Create1 = document.getElementById("firstRow_create_js");
+let modal_btn_active = document.querySelector("#modal");
+let modal_close = document.querySelector(".modal_close");
+let btn_submit_post = document.querySelector("#btn_submit_post");
+
+function modal_active() {
+    modal_btn_active.classList.add("modal_active");
+}
+
+function modal_deactive() {
+    modal_btn_active.classList.remove("modal_active");
+}
+newfeed_Create1.addEventListener("click", modal_active);
+modal_close.addEventListener("click", modal_deactive);
+btn_submit_post.addEventListener("click", modal_deactive);
+
+let btn_setting_post = document.querySelector(".newfeed_post_more");
+let moreSetting = document.querySelector(".more_setting");
+btn_setting_post.addEventListener("click", function () {
+    moreSetting.classList.add("active");
+})
+
+
+
+// END NEWFEED VIEWS
+
+
+
+
 // END DROPDOWN SIDEBAR
 
 // START PAGES NOTIFY
@@ -110,6 +142,15 @@ socket.on("notify", (noti) => {
     console.log(noti);
     alert(noti.title);
 });
+
+
+
+
+
+
+
+
+
 
 /* Giang */
 let show = false;

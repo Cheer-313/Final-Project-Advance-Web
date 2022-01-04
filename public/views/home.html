@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,48 +8,47 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <title>Home page</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="themify-icons/themify-icons.css">
+
 </head>
+
 <body>
 
     <div id="header">
-        <a href="./home.html"><img src="../img/logo.png" class="logo"></a>
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Tìm kiếm ...">
+        <ul id="nav">
+            <li>
+                <a href="#">
+                    <i class="ti-user"></i>
+                    Mạch Trung Tín
+                    <i class="nav-arrow-down ti-angle-down"></i>
+                </a>
+                <ul class="subnav">
+                    <li><a href="#">Đăng xuất</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Trang chủ</a></li>
+        </ul>
+        <div id="notify_header">
+            <a href="#" class="notify">THÔNG BÁO</a>
         </div>
-        <div class="head-user-icon" > <!--bug-->
-            <img src="../img/img-1.jpg" alt="">
-            <p>Nguyễn Văn A  <i class="fas fa-sort-down" id="set-menu"></i></p>
-        </div>
-        <!--menu-->
-        <div class="setting-menu" id="setting-menu">
-            <ul class="menu">
-                <li><a href="../views/profile.html">Xem trang cá nhân</a></li>
-                <li><a href="">Quản lý</a></li>
-                <li><a href="">Quản lý thông báo</a></li>
-                <li><a href="">Thay đổi mật khẩu</a></li>
-                <li><a href="">Đăng xuất</a></li>
-
-            </ul>
-        </div>
+        <div id="js-menu-mobile-btn" class="menu-mobile-btn ti-menu"></div>
     </div>
     <!--nội dung chính-->
     <div id="newfeed">
         <!---->
-        <div class="left-sidebar">
-            <div class="left-menu">
-                <ul>
-                    <li><i class="fas fa-home"></i><a href="./home.html">Trang chủ</a></li>
-                    <li><i class="fas fa-th-list"></i>Phân loại thông báo
-                        <ul class="not-classify">
-                            <li><i class="fas fa-building"></i><a href="#">Phòng ban</a> </li>
-                            <li><i class="fas fa-landmark"></i><a href="#">Khoa</a></li>
-                            <li><i class="fas fa-quran"></i><a href="#">Chủ đề</a></li>
-                            <li><i class="fas fa-th-list"></i><a href="#">Tất cả thông báo</a></li>
-                        </ul>
-                    </li>
-                    <li><i class="fas fa-sign-in-alt"></i><a href="#">Cổng thông tin</a></li>
-                </ul>
+        <div id="sidebar">
+            <li>
+                <a href="#"><i class="icon ti-home"></i>Trang chủ</a>
+            </li>
+            <li>
+                <a href="#" id="js-dropdown-btn"><i class="icon ti-layout"></i>Phân loại thông báo</a>
+                <i class="nav-arrow-down ti-angle-down"></i>
+            </li>
+            <div class="dropdown-container" id="js-dropdown-container">
+                <li><a href="#">Phòng đại học</a></li>
+                <li><a href="#">Uỷ ban</a></li>
+                <li><a href="#">Phòng chức năng</a></li>
+
             </div>
         </div>
         <div class="main-content">
@@ -57,11 +57,11 @@
                 <div class="avt-icon">
                     <a href="./profile.html"><img src="../img/img-1.jpg" alt=""></a>
                     <p>Nguyễn Văn A</p>
-                    
+
                 </div>
                 <div class="stt-input">
                     <textarea rows="3" placeholder="Bạn ơi nghĩ gì thế?"></textarea>
-                    
+
                     <div class="add-post-link">
                         <a href="#"><i class="fas fa-video"></i> Video</a>
                         <a href="#"><i class="fas fa-images"></i> Hình ảnh</a>
@@ -91,7 +91,7 @@
                             <ul class="menu">
                                 <li>Chỉnh sửa</li>
                                 <li>Xoá</li>
-                
+
                             </ul>
                         </div>
                     </div>
@@ -107,22 +107,24 @@
                         <div class="cmts">
                             <img src="../img/avt.jpg" alt="">
                             <span>
-                                <b>Nguyễn Văn B 
+                                <b>Nguyễn Văn B
                                     <small>
                                         <i>&ensp; 30-Dec-21 2:04pm</i>
                                     </small>&emsp;
-                                    <i class="fas fa-ellipsis-v" id="set-cmt" ></i>
+                                    <i class="fas fa-ellipsis-v" id="set-cmt"></i>
                                 </b>
-            
-                                <p>lorem Đẹp quá quá đẹp Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi culpa itaque reiciendis, labore, excepturi quas unde corporis, molestiae sint soluta maiores ut earum impedit. Harum accusantium tempore expedita odio sint?</p>
-                                
+
+                                <p>lorem Đẹp quá quá đẹp Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
+                                    culpa itaque reiciendis, labore, excepturi quas unde corporis, molestiae sint soluta
+                                    maiores ut earum impedit. Harum accusantium tempore expedita odio sint?</p>
+
                             </span>
                             <div>
                                 <div class="setting-cmt" id="setting-cmt">
                                     <ul class="menu">
                                         <li><a href="">Chỉnh sửa</a></li>
                                         <li><a href="">Xoá</a></li>
-                        
+
                                     </ul>
                                 </div>
                             </div>
@@ -407,7 +409,7 @@
                     <ul>
                         <li class="green">
                             <div class="messages">
-                                <small><i>[Phòng Đại học]  - 30/12/2021</i></small>
+                                <small><i>[Phòng Đại học] - 30/12/2021</i></small>
                                 <br>
                                 <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
                                 <br>
@@ -416,7 +418,7 @@
                         </li>
                         <li class="white">
                             <div class="messages">
-                                <small><i>[Phòng Đại học]  - 30/12/2021</i></small>
+                                <small><i>[Phòng Đại học] - 30/12/2021</i></small>
                                 <br>
                                 <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
                                 <br>
@@ -425,7 +427,7 @@
                         </li>
                         <li class="green">
                             <div class="messages">
-                                <small><i>[Phòng Đại học]  - 30/12/2021</i></small>
+                                <small><i>[Phòng Đại học] - 30/12/2021</i></small>
                                 <br>
                                 <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
                                 <br>
@@ -434,7 +436,7 @@
                         </li>
                         <li class="white">
                             <div class="messages">
-                                <small><i>[Phòng Đại học]  - 30/12/2021</i></small>
+                                <small><i>[Phòng Đại học] - 30/12/2021</i></small>
                                 <br>
                                 <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
                                 <br>
@@ -443,24 +445,25 @@
                         </li>
                         <li class="green">
                             <div class="messages">
-                                <small><i>[Phòng Đại học]  - 30/12/2021</i></small>
+                                <small><i>[Phòng Đại học] - 30/12/2021</i></small>
                                 <br>
                                 <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
                                 <br>
                                 <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
                             </div>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
         </div>
-        
+
     </div>
-    <div id="footer">
+    <!-- <div id="footer">
         <p>Copyright 2021 - Student Tin Hung Giang</p>
-    </div>
+    </div> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../javascripts/script.js"></script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,47 +8,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <title>Trang cá nhân</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="themify-icons/themify-icons.css">
+
 </head>
+
 <body>
     <div id="header">
-        <a href="./home.html"><img src="../img/logo.png" class="logo"></a>
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Tìm kiếm ...">
+        <ul id="nav">
+            <li>
+                <a href="#">
+                    <i class="ti-user"></i>
+                    Mạch Trung Tín
+                    <i class="nav-arrow-down ti-angle-down"></i>
+                </a>
+                <ul class="subnav">
+                    <li><a href="#">Đăng xuất</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Trang chủ</a></li>
+        </ul>
+        <div id="notify_header">
+            <a href="#" class="notify">THÔNG BÁO</a>
         </div>
-        <div class="head-user-icon" > <!--bug-->
-            <img src="../img/img-1.jpg" alt="">
-            <p>Nguyễn Văn A  <i class="fas fa-sort-down" id="set-menu"></i></p>
-        </div>
-        <!--menu-->
-        <div class="setting-menu" id="setting-menu">
-            <ul class="menu">
-                <li><a href="../views/profile.html">Xem trang cá nhân</a></li>
-                <li><a href="">Quản lý</a></li>
-                <li><a href="">Quản lý thông báo</a></li>
-                <li><a href="">Thay đổi mật khẩu</a></li>
-                <li><a href="">Đăng xuất</a></li>
-
-            </ul>
-        </div>
+        <div id="js-menu-mobile-btn" class="menu-mobile-btn ti-menu"></div>
     </div>
 
     <div id="newfeed">
         <!---->
-        <div class="left-sidebar">
-            <div class="left-menu">
-                <ul>
-                    <li><i class="fas fa-home"></i><a href="./home.html">Trang chủ</a></li>
-                    <li><i class="fas fa-th-list"></i>Phân loại thông báo
-                        <ul class="not-classify">
-                            <li><i class="fas fa-building"></i><a href="#">Phòng ban</a> </li>
-                            <li><i class="fas fa-landmark"></i><a href="#">Khoa</a></li>
-                            <li><i class="fas fa-quran"></i><a href="#">Chủ đề</a></li>
-                            <li><i class="fas fa-th-list"></i><a href="#">Tất cả thông báo</a></li>
-                        </ul>
-                    </li>
-                    <li><i class="fas fa-sign-in-alt"></i><a href="#">Cổng thông tin</a></li>
-                </ul>
+        <div id="sidebar">
+            <li>
+                <a href="#"><i class="icon ti-home"></i>Trang chủ</a>
+            </li>
+            <li>
+                <a href="#" id="js-dropdown-btn"><i class="icon ti-layout"></i>Phân loại thông báo</a>
+                <i class="nav-arrow-down ti-angle-down"></i>
+            </li>
+            <div class="dropdown-container" id="js-dropdown-container">
+                <li><a href="#">Phòng đại học</a></li>
+                <li><a href="#">Uỷ ban</a></li>
+                <li><a href="#">Phòng chức năng</a></li>
+
             </div>
         </div>
         <div class="main-content">
@@ -56,7 +56,7 @@
                 <div class="user-avt">
                     <a href="./profile.html"><img src="../img/img-1.jpg" alt=""></a>
                 </div>
-                <div class="user-in4">    
+                <div class="user-in4">
                     <b>Nguyễn Văn A &ensp;<i class="fas fa-pen-fancy" id="modaledit"></i></b>
                     <p><i>Khoa: </i> Công nghệ thông tin</p>
                     <p><i>Lớp: </i> 18050202</p>
@@ -67,44 +67,44 @@
             <div id="myModal" class="modal">
                 <!-- Modal content -->
                 <div class="modal-content">
-                  <span class="close">&times;</span>
-                  <div>
-                      <form action="#" method="post">
+                    <span class="close">&times;</span>
+                    <div>
+                        <form action="#" method="post">
 
-                          <h3>CHỈNH SỬA THÔNG TIN</h3>
-                          <div class="avt-edit">
-                              <span>
-                                  <img src="../img/img-1.jpg" id="edit-avt">
-                              </span>
-                          </div>
-                          <div class="name-edit">
-                              <label for="name">Tên hiển thị</label><br>
-                              <input type="text" id="edit-name" placeholder="Nhập tên">
-                          </div>
-                          <div class="facl-edit">
-                              <label for="edit-facl">Khoa</label><br>
-                              <select name="faculty" id="edit-facl">
-                                <option value="">Khoa</option>
-                                <option value="CNTT">CNTT</option>
-                                <option value="Đ-ĐT">Đ-ĐT</option>
-                                <option value="QTKD">QTKD</option>
-                                </select>
-                          </div>
-                          <div class="class-edit">
-                              <label for="edit-class">Lớp</label><br>
-                              <select name="classes" id="edit-class">
-                                <option value="">Lớp</option>
-                                <option value="CNTT">18020201</option>
-                                <option value="Đ-ĐT">18020202</option>
-                                <option value="QTKD">18020203</option>
-                            </select>
-                          </div>
-                          <div class="modal-footer">
-                                <button type="button"  id="saveModalButton"  data-dismiss="modal">Lưu thay đổi</button>
+                            <h3>CHỈNH SỬA THÔNG TIN</h3>
+                            <div class="avt-edit">
+                                <span>
+                                    <img src="../img/img-1.jpg" id="edit-avt">
+                                </span>
                             </div>
-                      </form>
-                  </div>
-                </div>            
+                            <div class="name-edit">
+                                <label for="name">Tên hiển thị</label><br>
+                                <input type="text" id="edit-name" placeholder="Nhập tên">
+                            </div>
+                            <div class="facl-edit">
+                                <label for="edit-facl">Khoa</label><br>
+                                <select name="faculty" id="edit-facl">
+                                    <option value="">Khoa</option>
+                                    <option value="CNTT">CNTT</option>
+                                    <option value="Đ-ĐT">Đ-ĐT</option>
+                                    <option value="QTKD">QTKD</option>
+                                </select>
+                            </div>
+                            <div class="class-edit">
+                                <label for="edit-class">Lớp</label><br>
+                                <select name="classes" id="edit-class">
+                                    <option value="">Lớp</option>
+                                    <option value="CNTT">18020201</option>
+                                    <option value="Đ-ĐT">18020202</option>
+                                    <option value="QTKD">18020203</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="saveModalButton" data-dismiss="modal">Lưu thay đổi</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <!---->
             <div class="post-container">
@@ -122,158 +122,162 @@
                             <ul class="menu">
                                 <li id="modaledit-2">Chỉnh sửa</li>
                                 <li>Xoá</li>
-                
+
                             </ul>
                         </div>
                     </div>
                     <div id="myModal-2" class="modal">
                         <!-- Modal content -->
                         <div class="modal-content">
-                          <span class="close" id="close-edit-post">&times;</span>
-                          <div>
-                              <form action="#" method="post">
-        
-                                <h3>CHỈNH SỬA BÀI VIẾT</h3>
-                                <div class="avt-icon">
-                                    <a href="#"><img src="../img/img-1.jpg" alt=""></a>
-                                    <p>Nguyễn Văn A</p>
-                                    
-                                </div>
-                                <div class="stt-input">
-                                    <textarea rows="3" placeholder="Bạn ơi nghĩ gì thế?"></textarea>
-                                    
-                                    <div class="add-post-link">
-                                        <a href="#"><i class="fas fa-video"></i> Video</a>
-                                        <a href="#"><i class="fas fa-images"></i> Hình ảnh</a>
-                                        <select name="faculty" id="">
-                                            <option value="">Phòng/Khoa</option>
-                                            <option value="CNTT">CNTT</option>
-                                            <option value="Đ-ĐT">Đ-ĐT</option>
-                                            <option value="QTKD">QTKD</option>
-                                        </select>
-                                  </div>
-                                  <div class="modal-footer">
-                                        <button type="button"  id="saveModalButton-2"  data-dismiss="modal">Lưu thay đổi</button>
-                                    </div>
-                              </form>
-                          </div>
-                        </div>            
-                    </div>
-                </div>
-                    <p class="post-text">Chúc mọi người Tết vui vẻ</p>
-                    <img src="../img/download.jpg" class="post-img">
-                    <div class="post-act">
-                        <div>
-                            <i class="far fa-comment-dots"></i>
-                            Bình luận
-                        </div>
-                    </div>
-                    <div class="post-cmt">
-                        <div class="cmts">
-                            <img src="../img/avt.jpg" alt="">
-                            <span>
-                                <b>Nguyễn Văn B 
-                                    <small>
-                                        <i>&ensp; 30-Dec-21 2:04pm</i>
-                                    </small>&emsp;
-                                    <i class="fas fa-ellipsis-v" id="set-cmt" ></i>
-                                </b>
-            
-                                <p>lorem Đẹp quá quá đẹp Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi culpa itaque reiciendis, labore, excepturi quas unde corporis, molestiae sint soluta maiores ut earum impedit. Harum accusantium tempore expedita odio sint?</p>
-                                
-                            </span>
+                            <span class="close" id="close-edit-post">&times;</span>
                             <div>
-                                <div class="setting-cmt" id="setting-cmt">
-                                    <ul class="menu">
-                                        <li><a href="">Chỉnh sửa</a></li>
-                                        <li><a href="">Xoá</a></li>
-                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-cmts">
-                            <div>
+                                <form action="#" method="post">
 
-                                <img src="../img/avt.jpg" alt="">
-                                <input type="text" placeholder="Nhập nội dung">
-                                <button>Đăng</button>
+                                    <h3>CHỈNH SỬA BÀI VIẾT</h3>
+                                    <div class="avt-icon">
+                                        <a href="#"><img src="../img/img-1.jpg" alt=""></a>
+                                        <p>Nguyễn Văn A</p>
+
+                                    </div>
+                                    <div class="stt-input">
+                                        <textarea rows="3" placeholder="Bạn ơi nghĩ gì thế?"></textarea>
+
+                                        <div class="add-post-link">
+                                            <a href="#"><i class="fas fa-video"></i> Video</a>
+                                            <a href="#"><i class="fas fa-images"></i> Hình ảnh</a>
+                                            <select name="faculty" id="">
+                                                <option value="">Phòng/Khoa</option>
+                                                <option value="CNTT">CNTT</option>
+                                                <option value="Đ-ĐT">Đ-ĐT</option>
+                                                <option value="QTKD">QTKD</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="saveModalButton-2" data-dismiss="modal">Lưu thay
+                                                đổi</button>
+                                        </div>
+                                </form>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="post-text">Chúc mọi người Tết vui vẻ</p>
+                <img src="../img/download.jpg" class="post-img">
+                <div class="post-act">
+                    <div>
+                        <i class="far fa-comment-dots"></i>
+                        Bình luận
+                    </div>
+                </div>
+                <div class="post-cmt">
+                    <div class="cmts">
+                        <img src="../img/avt.jpg" alt="">
+                        <span>
+                            <b>Nguyễn Văn B
+                                <small>
+                                    <i>&ensp; 30-Dec-21 2:04pm</i>
+                                </small>&emsp;
+                                <i class="fas fa-ellipsis-v" id="set-cmt"></i>
+                            </b>
+
+                            <p>lorem Đẹp quá quá đẹp Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
+                                culpa itaque reiciendis, labore, excepturi quas unde corporis, molestiae sint soluta
+                                maiores ut earum impedit. Harum accusantium tempore expedita odio sint?</p>
+
+                        </span>
+                        <div>
+                            <div class="setting-cmt" id="setting-cmt">
+                                <ul class="menu">
+                                    <li><a href="">Chỉnh sửa</a></li>
+                                    <li><a href="">Xoá</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-cmts">
+                        <div>
+
+                            <img src="../img/avt.jpg" alt="">
+                            <input type="text" placeholder="Nhập nội dung">
+                            <button>Đăng</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="right-sidebar">
-            <div class="new-notices">
-                <div class="head-notice">
-                    <div class="caption-notice">
-                        <span>
-                            <img src="../img/new.png">
-                            THÔNG BÁO MỚI
-                        </span>
-                        <a href="#">Xem tất cả</a>
-                    </div>
-                </div>
-                <div class="notices">
-                    <ul>
-                        <li class="green">
-                            <div class="messages">
-                                <small><i>[Phòng Đại học]  - 30/12/2021</i></small>
-                                <br>
-                                <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
-                                <br>
-                                <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
-                            </div>
-                        </li>
-                        <li class="white">
-                            <div class="messages">
-                                <small><i>[Phòng Đại học]  - 30/12/2021</i></small>
-                                <br>
-                                <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
-                                <br>
-                                <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
-                            </div>
-                        </li>
-                        <li class="green">
-                            <div class="messages">
-                                <small><i>[Phòng Đại học]  - 30/12/2021</i></small>
-                                <br>
-                                <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
-                                <br>
-                                <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
-                            </div>
-                        </li>
-                        <li class="white">
-                            <div class="messages">
-                                <small><i>[Phòng Đại học]  - 30/12/2021</i></small>
-                                <br>
-                                <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
-                                <br>
-                                <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
-                            </div>
-                        </li>
-                        <li class="green">
-                            <div class="messages">
-                                <small><i>[Phòng Đại học]  - 30/12/2021</i></small>
-                                <br>
-                                <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
-                                <br>
-                                <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
-                            </div>
-                        </li>
-                        
-                    </ul>
+    </div>
+
+    <div class="right-sidebar">
+        <div class="new-notices">
+            <div class="head-notice">
+                <div class="caption-notice">
+                    <span>
+                        <img src="../img/new.png">
+                        THÔNG BÁO MỚI
+                    </span>
+                    <a href="#">Xem tất cả</a>
                 </div>
             </div>
+            <div class="notices">
+                <ul>
+                    <li class="green">
+                        <div class="messages">
+                            <small><i>[Phòng Đại học] - 30/12/2021</i></small>
+                            <br>
+                            <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
+                            <br>
+                            <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
+                        </div>
+                    </li>
+                    <li class="white">
+                        <div class="messages">
+                            <small><i>[Phòng Đại học] - 30/12/2021</i></small>
+                            <br>
+                            <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
+                            <br>
+                            <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
+                        </div>
+                    </li>
+                    <li class="green">
+                        <div class="messages">
+                            <small><i>[Phòng Đại học] - 30/12/2021</i></small>
+                            <br>
+                            <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
+                            <br>
+                            <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
+                        </div>
+                    </li>
+                    <li class="white">
+                        <div class="messages">
+                            <small><i>[Phòng Đại học] - 30/12/2021</i></small>
+                            <br>
+                            <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
+                            <br>
+                            <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
+                        </div>
+                    </li>
+                    <li class="green">
+                        <div class="messages">
+                            <small><i>[Phòng Đại học] - 30/12/2021</i></small>
+                            <br>
+                            <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
+                            <br>
+                            <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
         </div>
-        
     </div>
-    <div id="footer">
+
+    </div>
+    <!-- <div id="footer">
         <p>Copyright 2021 - Student Tin Hung Giang</p>
-    </div>
+    </div> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../javascripts/script.js"></script>
 </body>
+
 </html>
