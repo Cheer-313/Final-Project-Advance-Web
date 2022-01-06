@@ -136,6 +136,7 @@ class Notification {
                 }
 
                 if (files) {
+                    console.log("FILES HERE", files);
                     // Get authId after local
                     let folder = req.user.authId.substring(0, 6) == "google" ? req.user.authId.substring(7) : req.user.authId.substring(6);
 
