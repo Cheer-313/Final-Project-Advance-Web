@@ -122,7 +122,8 @@ class Notification {
     }
 
     createNoti(req, res) {
-        let handler = uploadFile.array("files", 10);
+        try {
+            let handler = uploadFile.array("files", 10);
         let filesPath = [];
 
         handler(req, res, async (error) => {
@@ -184,6 +185,10 @@ class Notification {
             );
         });
     }
+        } catch (error) {
+            req.flash("message", error);
+            return res.redirect("/noti/manage");
+        }
 
     updateNoti(req, res) {
         let _idNoti = req.params._id;
