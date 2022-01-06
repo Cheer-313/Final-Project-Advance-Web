@@ -1,236 +1,163 @@
 <div id="main">
     <%- include("./partials/header.ejs") %>
 
-        <div id="content">
-            <%- include("./partials/sidebar.ejs") %>
+    <div id="content">
+        <%- include("./partials/sidebar.ejs") %>
 
-                <div id="intension">
-                    <div id="newfeed">
-                        <div class="main-content">
-                            <!--đăng nội dung-->
-                            <div class="user-information">
-                                <div class="user-avt">
-                                   <img src="<%= profileUser.avatar %>" alt="">
-                                </div>
-                                <div class="user-in4">
-                                    <% let studentCode = (profileUser.email)? profileUser.email.substring(0,8):"None"%>
-                                    
-                                    <b>
-                                        <%= profileUser.fullname %>
-
-                                        <%# Only student role can edit profile %> 
-                                        <% if(profileUser._id == user._id && user.role == "Student") { %>
-                                            &ensp;<i class="fas fa-pen-fancy" id="modaledit"></i>
-                                        <% } %>
-                                    </b>
-                                    <p><i>Khoa: </i> <%= profileUser.faculty || "None" %></p>
-                                    <p><i>Lớp: </i> <%= profileUser.class || "None" %></p>
-                                    <p><i>MSSV: </i> <%=  studentCode %></p>
-                                    <div id="userId" class="d-none" value="<%=profileUser._id%>"></div>
-                                </div>
-                            </div>
-
-                            <!--modal sửa thông tin-->
-                            <div id="myModal" class="modal">
-                                <!-- Modal content -->
-                                <div class="modal-content">
-                                    <span class="close">&times;</span>
-                                    <div>
-                                        <form action="/profile/edit" method="post">
-                    
-                                            <h3>CHỈNH SỬA THÔNG TIN</h3>
-                                            <div class="avt-edit">
-                                                <span>
-                                                    <img src="<%= user.avatar %>" id="edit-avt">
-                                                </span>
-                                            </div>
-                                            <div class="name-edit">
-                                                <label for="name">Tên hiển thị</label><br>
-                                                <input type="text" name="fullname" id="edit-name" value="<%= user.fullname %>">
-                                            </div>
-
-                                            <div class="facl-edit">
-                                                <label for="edit-facl">Khoa</label><br>
-                                                <select name="faculty" id="edit-facl">
-                                                    <option value="">Khoa</option>
-                                                    <% faculty.forEach(faculty => { %>
-                                                        <option value="<%= faculty %>"><%= faculty %></option>
-                                                    <% }); %>
-                                                </select>
-                                            </div>
-
-                                            <div class="class-edit">
-                                                <label for="edit-class">Lớp</label><br>
-                                                <input type="text" name="classname" id="edit-class" value="<%= user.class %>">
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="submit" id="saveModalButton" data-dismiss="modal">Lưu thay đổi</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <!---->
-                            <div class="post-container">
-                                <div class="post">
-                                    <div class="post-row">
-                                        <div class="user-profile">
-                                            <img src="../img/avt.jpg" alt="">
-                                            <div>
-                                                <p>Nguyễn Văn A</p>
-                                                <span>29-Dec-21 10:59pm</span>
-                                            </div>
-                                        </div>
-                                        <a href="#"><i class="fas fa-ellipsis-v" id="set-stt"></i></a>
-                                        <div class="setting-stt" id="setting-stt">
-                                            <ul class="menu">
-                                                <li id="modaledit-2">Chỉnh sửa</li>
-                                                <li>Xoá</li>
-                    
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div id="myModal-2" class="modal">
-                                        <!-- Modal content -->
-                                        <div class="modal-content">
-                                            <span class="close" id="close-edit-post">&times;</span>
-                                            <div>
-                                                <form action="#" method="post">
-                    
-                                                    <h3>CHỈNH SỬA BÀI VIẾT</h3>
-                                                    <div class="avt-icon">
-                                                        <a href="#"><img src="../img/img-1.jpg" alt=""></a>
-                                                        <p>Nguyễn Văn A</p>
-                    
-                                                    </div>
-                                                    <div class="stt-input">
-                                                        <textarea rows="3" placeholder="Bạn ơi nghĩ gì thế?"></textarea>
-                    
-                                                        <div class="add-post-link">
-                                                            <a href="#"><i class="fas fa-video"></i> Video</a>
-                                                            <a href="#"><i class="fas fa-images"></i> Hình ảnh</a>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" id="saveModalButton-2" data-dismiss="modal">Lưu thay đổi</button>
-                                                        </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="post-text">Chúc mọi người Tết vui vẻ</p>
-                                <img src="../img/download.jpg" class="post-img">
-                                <div class="post-act">
-                                    <div>
-                                        <i class="far fa-comment-dots"></i>
-                                        Bình luận
-                                    </div>
-                                </div>
-                                <div class="post-cmt">
-                                    <div class="cmts">
-                                        <img src="../img/avt.jpg" alt="">
-                                        <span>
-                                            <b>Nguyễn Văn B
-                                                <small>
-                                                    <i>&ensp; 30-Dec-21 2:04pm</i>
-                                                </small>&emsp;
-                                                <i class="fas fa-ellipsis-v" id="set-cmt"></i>
-                                            </b>
-                    
-                                            <p>lorem Đẹp quá quá đẹp Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi culpa itaque reiciendis, labore, excepturi quas unde corporis, molestiae sint soluta maiores ut earum impedit. Harum accusantium tempore expedita odio sint?</p>
-                    
-                                        </span>
-                                        <div>
-                                            <div class="setting-cmt" id="setting-cmt">
-                                                <ul class="menu">
-                                                    <li><a href="">Chỉnh sửa</a></li>
-                                                    <li><a href="">Xoá</a></li>
-                    
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post-cmts">
-                                        <form>
-                                            <img src="../img/avt.jpg" alt="">
-                                            <input type="text" placeholder="Nhập nội dung">
-                                            <button>Đăng</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="right-sidebar">
-                        <div class="new-notices">
-                            <div class="head-notice">
-                                <div class="caption-notice">
-                                    <span>
-                                        <img src="../img/new.png">
-                                        THÔNG BÁO MỚI
-                                    </span>
-                                    <a href="#">Xem tất cả</a>
-                                </div>
-                            </div>
-                            <div class="notices">
-                                <ul>
-                                    <li class="green">
-                                        <div class="messages">
-                                            <small><i>[Phòng Đại học] - 30/12/2021</i></small>
-                                            <br>
-                                            <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
-                                            <br>
-                                            <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
-                                        </div>
-                                    </li>
-                                    <li class="white">
-                                        <div class="messages">
-                                            <small><i>[Phòng Đại học] - 30/12/2021</i></small>
-                                            <br>
-                                            <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
-                                            <br>
-                                            <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
-                                        </div>
-                                    </li>
-                                    <li class="green">
-                                        <div class="messages">
-                                            <small><i>[Phòng Đại học] - 30/12/2021</i></small>
-                                            <br>
-                                            <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
-                                            <br>
-                                            <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
-                                        </div>
-                                    </li>
-                                    <li class="white">
-                                        <div class="messages">
-                                            <small><i>[Phòng Đại học] - 30/12/2021</i></small>
-                                            <br>
-                                            <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
-                                            <br>
-                                            <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
-                                        </div>
-                                    </li>
-                                    <li class="green">
-                                        <div class="messages">
-                                            <small><i>[Phòng Đại học] - 30/12/2021</i></small>
-                                            <br>
-                                            <a href="#"><b>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</b></a>
-                                            <br>
-                                            <small>[Chính thức] - Lịch thi lại do hoãn thi môn Tiếng Anh</small>
-                                        </div>
-                                    </li>
-                    
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    </div>
-                    <div class="print-values">
-                        <p id="valueList"></p>
-                    </div>
+        <div class="newfeed_content">
+            <div class="user-information">
+                <div class="user-avt">
+                    <a href="javascript:void(0)"><img src="<%= profileUser.avatar %>" alt=""></a>
                 </div>
+                <div class="user-in4">
+                    <% let studentCode=(profileUser.email)? profileUser.email.substring(0,8):"None"%>
+                    
+                    <b>
+                        <%= profileUser.fullname %>
+                
+                        <%# Only student role can edit profile %>
+                        <% if(profileUser._id==user._id && user.role=="Student" ) { %>
+                            &ensp;<i class="fas fa-pen-fancy" id="modaledit"></i>
+                        <% } %>
+                    </b>
+                    <p><i>Khoa: </i>
+                        <%= profileUser.faculty || "None" %>
+                    </p>
+                    <p><i>Lớp: </i>
+                        <%= profileUser.class || "None" %>
+                    </p>
+                    <p><i>MSSV: </i>
+                        <%= studentCode %>
+                    </p>
+                    <div id="userId" class="d-none" value="<%=profileUser._id%>"></div>
+                </div>
+            </div>
+            <div id="addPostProfileHere" class="newfeed_content_posts">
+                <% Object.keys(posts).forEach(index=> { let post = posts[index] %>
+                <% let date = new Date(post.date); %>
+                <% var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                    var match = post.video.match(regExp);
+                    var idUrlYoutube = '';
+                    if (match && match[2].length == 11) {
+                         idUrlYoutube = match[2];
+                    }
+                %>
+                <div class="newfeed_content_post">
+                    <div class="newfeed_post_header">
+                        <div class="newfeed_post_info">
+                            <i class="ti-user"></i>
+                            <div class="post_NameDate">
+                                <p><%= post.postedBy.fullname %></p>
+                                <span><%= date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear() %></span>
+                            </div>
+                        </div>
+                        <div class="newfeed_post_more">
+                            <i class="ti-more-alt"></i>
+                            <ul class="more_setting">
+                                <li>Chỉnh Sửa</li>
+                                <li>Xóa</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="newfeed_post_body">
+                        <div class="post_body_text">
+                            <p><%= post.content %></p>
+                        </div>
+                        <div class="post_body_upload">
+                            <% 
+                            let embedUrl = `https://www.youtube.com/embed/${idUrlYoutube}`;
+                            if (post.image && post.video) {
+                            %>
+                                <img src="<%= post.image %>" alt="">
+                                <iframe src="<%= embedUrl %>"></iframe>
+                            <% } else if (post.image) { %>
+                                <img src="<%= post.image %>" alt="">
+                            <% } else if (post.video) { %>
+                                <iframe src="<%= embedUrl %>"></iframe>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="newfeed_post_comment">
+                        <% if (post.comment){ %>
+                            <% Object.keys(post.comment).forEach(index=> { let comment = post.comment[index] %>
+                            <div class="user_comment">
+                                <i class="ti-user"></i>
+                                <div class="comment_text">
+                                    <h5>
+                                        <%= comment.commentBy.fullname %>
+                                    </h5>
+                                    <p class="comment_text_content">
+                                        <%= comment.content %>
+                                    </p>
+                                    <div class="comment_more">
+                                        <i class="ti-more-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+                        <% } %>
+                    </div>
+                    <form action="/api/comment/" method="post" class="newfeed_post_createComment formCreateComment">
+                        <i class="ti-user"></i>
+                        <input type="hidden" name="_idPost" value="<%= post._id %>"></input>
+                        <input type="text" name="content" placeholder="Viết bình luận"></input>
+                    </form>
+                </div>
+                <% }) %>
+                
+            </div>
         </div>
+
+        <div class="newFeed_notify">
+            <div class="newfeed_notify_header">
+                <h3>THÔNG BÁO MỚI</h3>
+                <a href="notifyManage.html">xem tất cả</a>
+            </div>
+            <div class="newfeed_notify_posts">
+                <div class="newfeed_notify_post">
+                    <a href="notifyContent.html">
+                        <span>[Phòng đại học]</span>
+                        <span>02/01/2022</span>
+                        <p>Kế hoạch TSNN/KTLN/môn thay thế TN đợt 1/2021-2022</p>
+                    </a>
+                </div>
+                <div class="newfeed_notify_post">
+                    <a href="notifyContent.html">
+                        <span>[Phòng đại học]</span>
+                        <span>02/01/2022</span>
+                        <p>Kế hoạch TSNN/KTLN/môn thay thế TN đợt 1/2021-2022</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal">
+    <div class="modal_container">
+        <div class="modal_create">
+            <div class="modal_header">
+                <h3>Tạo bài viết</h3>
+            </div>
+            <div class="modal_body">
+                <div class="modal_info">
+                    <i class="ti-user"></i>
+                    <p>Mạch Tín</p>
+                </div>
+                <div class="modal_text">
+                    <form action="">
+                        <textarea placeholder="Bạn đang nghĩ gì thế ?"></textarea>
+                        <label for="file_img">Hình ảnh</label> </br>
+                        <input id="file_img" name="file_img" type="file" placeholder=""> </br>
+                        <label for="video_URL">Video</label> </br>
+                        <input id="video_URL" name="video_URL" type="text" placeholder="URL"> </br>
+                        <button type="submit" id="btn_submit_post">Đăng bài viết</button>
+                    </form>
+                </div>
+            </div>
+            <div class="modal_close">
+                <i class="ti-close"></i>
+            </div>
+        </div>
+
+    </div>
 </div>

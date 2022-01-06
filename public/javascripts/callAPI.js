@@ -11,14 +11,24 @@ if(window.location.pathname == "/"){
 }
 $(document).ready(function () {
     // Load more when scroll to the end page
-    let nextPage = 2;
-    let lengthPost = 10;
-    window.onscroll = function (ev) {
-        if ($(window).scrollTop() + $(window).height() == $(document).height() && lengthPost != 0) {
-            lengthPost = getAllPost(nextPage);
-            nextPage++;
-        }
-    };
+    if (window.location.pathname == "/") {
+        let nextPage = 2;
+        let lengthPost = 10;
+        window.onscroll = function (ev) {
+            if ($(window).scrollTop() + $(window).height() == $(document).height() && lengthPost != 0) {
+                lengthPost = getAllPost(nextPage);
+                nextPage++;
+            }
+        };
+    }
+
+    // Load Profile
+    if(window.location.pathname == "/profile"){
+        let _idUser = document.getElementById("userId").getAttribute("value");
+        console.log("Olalalala");
+        getPostByUserId(_idUser);
+    }
+    
 });
 
 function getIdUrlYoutube(url){
@@ -52,7 +62,7 @@ function getAllPost(page) {
                     console.log(post);
 
                     const div = document.createElement("div");
-                    div.classList.add("container");
+                    div.classList.add("newfeed_content_post");
                     let date = new Date(post.date);
 
                     // Check exist video url and image post
@@ -73,7 +83,7 @@ function getAllPost(page) {
                         `;
                     }
 
-                    // fetch commment of post here
+                    // fetch commment here
                     var listComment = ``;
                     post.comment.forEach((comment) => {
                         let result = getCommentById(comment._id);
@@ -130,7 +140,6 @@ function getAllPost(page) {
                     //     </div>
                     // `;
                     let content = `
-                        <div class="newfeed_content_post">
                             <div class="newfeed_post_header">
                                 <div class="newfeed_post_info">
                                     <i class="ti-user"></i>
@@ -163,7 +172,6 @@ function getAllPost(page) {
                                 <input type="hidden" name="_idPost" value="${post._id}"></input>
                                 <input type="text" name="content" placeholder="Viết bình luận"></input>
                             </form>
-                        </div>
                     `;
                     div.innerHTML = content;
                     const list = document.getElementById("postHere");
@@ -175,14 +183,6 @@ function getAllPost(page) {
     });
     return lengthPost;
 }
-
-// Load Profile
-$(document).ready(function () {
-    // Load Profile
-    let _idUser = document.getElementById("userId").getAttribute("value");
-    console.log(_idUser);
-    getPostByUserId(_idUser);
-});
 
 function getPostByUserId(_idUser) {
     var lengthPost = 0;
@@ -202,7 +202,7 @@ function getPostByUserId(_idUser) {
 
                 for (let post of res.result) {
                     const div = document.createElement("div");
-                    div.classList.add("container");
+                    div.classList.add("newfeed_content_post");
                     let date = new Date(post.date);
 
                     // Check exist video url and image post
@@ -246,37 +246,38 @@ function getPostByUserId(_idUser) {
                     });
 
                     let content = `
-                        <div class="newfeed_content_post">
-                            <div class="newfeed_post_header">
-                                <div class="newfeed_post_info">
-                                    <i class="ti-user"></i>
-                                    <div class="post_NameDate">
-                                        <p>${post.postedBy.fullname}</p>
-                                        <span>${date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()}</span>
-                                    </div>
-                                </div>
-                                <div class="newfeed_post_more">
-                                    <i class="ti-more-alt"></i>
-                                    <ul class="more_setting">
-                                        <li>Chỉnh Sửa</li>
-                                        <li>Xóa</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="newfeed_post_body">
-                                <div class="post_body_text">
-                                    <p>${post.content}</p>
-                                </div>
-                                <div class="post_body_upload">${postBodyUpload}</div>
-                            </div>
-                            <div class="newfeed_post_comment">
-                                ${listComment}
-                            </div>
-                            <div class="newfeed_post_createComment">
+                        <div class="newfeed_post_header">
+                            <div class="newfeed_post_info">
                                 <i class="ti-user"></i>
-                                <input type="text" placeholder="Viết bình luận"></input>
+                                <div class="post_NameDate">
+                                    <p>${post.postedBy.fullname}</p>
+                                    <span>${date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()}</span>
+                                </div>
+                            </div>
+                            <div class="newfeed_post_more">
+                                <i class="ti-more-alt"></i>
+                                <ul class="more_setting">
+                                    <li>Chỉnh Sửa</li>
+                                    <li>Xóa</li>
+                                </ul>
                             </div>
                         </div>
+                        <div class="newfeed_post_body">
+                            <div class="post_body_text">
+                                <p>${post.content}</p>
+                            </div>
+                            <div class="post_body_upload">
+                                ${postBodyUpload}
+                            </div>
+                        </div>
+                        <div class="newfeed_post_comment">
+                            ${listComment}
+                        </div>
+                        <form action="/api/comment/" method="post" class="newfeed_post_createComment formCreateComment">
+                            <i class="ti-user"></i>
+                            <input type="hidden" name="_idPost" value="${post._id}"></input>
+                            <input type="text" name="content" placeholder="Viết bình luận"></input>
+                        </form>
                     `;
                     div.innerHTML = content;
 
