@@ -184,11 +184,11 @@ class Notification {
                 }
             );
         });
-    }
         } catch (error) {
             req.flash("message", error);
             return res.redirect("/noti/manage");
         }
+    }
 
     updateNoti(req, res) {
         let _idNoti = req.params._id;
