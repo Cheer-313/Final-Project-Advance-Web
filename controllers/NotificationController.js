@@ -135,7 +135,7 @@ class Notification {
 
             if (files) {
                 // Get authId after local
-                let folder = req.user.authId.substring(6);
+                let folder = req.user.authId.substring(0, 6) == "google" ? req.user.authId.substring(7) : req.user.authId.substring(6);
 
                 // Create path if it isnt existed
                 let newPath = `/uploads/${folder}/notifications`;
