@@ -209,7 +209,7 @@ class Notification {
                     return res.redirect(`/noti/edit/${_idNoti}`);
                 }
 
-                if (files) {
+                if (typeof files != "undefined" && files.lengh > 0) {
                     // Get authId after local
                     let folder = req.user.authId.substring(6);
 
