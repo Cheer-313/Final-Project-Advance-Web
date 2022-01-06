@@ -25,6 +25,13 @@ $(document).ready(function () {
 // START NEWFEED VIEWS
 
 $(document).ready(function () {
+    let newfeed_Create1 = document.getElementById("firstRow_create_js");
+    let modal_btn_active = document.querySelector("#modal");
+    let modal_close = document.querySelector(".modal_close");
+    let btn_submit_post = document.querySelector("#btn_submit_post");
+    let delete_Post = document.querySelector("#delete_js");
+    let custom_Post = document.querySelector("#custom_js");
+
     function modal_active() {
         modal_btn_active.classList.add("modal_active");
     }
@@ -33,20 +40,18 @@ $(document).ready(function () {
         modal_btn_active.classList.remove("modal_active");
     }
 
-    let newfeed_Create1 = document.getElementById("firstRow_create_js");
-    let modal_btn_active = document.querySelector("#modal");
-    let modal_close = document.querySelector(".modal_close");
-    let btn_submit_post = document.querySelector("#btn_submit_post");
-
     newfeed_Create1.addEventListener("click", modal_active);
     modal_close.addEventListener("click", modal_deactive);
     btn_submit_post.addEventListener("click", modal_deactive);
+    custom_Post.addEventListener("click", modal_active);
 
     let btn_setting_post = document.querySelector(".newfeed_post_more");
     let moreSetting = document.querySelector(".more_setting");
     btn_setting_post.addEventListener("click", function () {
         moreSetting.classList.add("active");
     });
+
+
 });
 
 
