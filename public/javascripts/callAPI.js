@@ -19,9 +19,6 @@ $(document).ready(function () {
             nextPage++;
         }
     };
-
-    // Load Profile
-    getPostByUserId();
 });
 
 function getIdUrlYoutube(url){
@@ -44,15 +41,14 @@ function getAllPost(page) {
         async: false,
         dataType: "json",
         success: function (res) {
-            if("error" in res){
+            if ("error" in res) {
                 console.log(res.error);
-            } else{
-
+            } else {
                 // for(let i of res.result){
                 //     console.log(i)
                 // }
 
-                for(let post of res.result){
+                for (let post of res.result) {
                     const div = document.createElement("div");
                     div.classList.add("container");
                     let date = new Date(post.date);
@@ -77,9 +73,9 @@ function getAllPost(page) {
 
                     // fetch commment of post here
                     var listComment = ``;
-                    post.comment.forEach(comment => {
+                    post.comment.forEach((comment) => {
                         let result = getCommentById(comment._id);
-                        if(result){
+                        if (result) {
                             console.log(result);
                             let comment = `
                                 <div class="user_comment">
@@ -95,8 +91,6 @@ function getAllPost(page) {
                             `;
                             listComment = listComment + comment;
                         }
-                        
-                        
                     });
 
                     let content = `
@@ -134,9 +128,8 @@ function getAllPost(page) {
                         </div>
                     `;
                     div.innerHTML = content;
-                        
-                    const list = document.getElementById("pastHere");
-                    list.insertBefore(div, list.childNodes[0]);
+                    const list = document.getElementById("postHere");
+                    list.appendChild(div);
                 }
             }
             lengthPost = Object.keys(res.result).length;
@@ -145,111 +138,117 @@ function getAllPost(page) {
     return lengthPost;
 }
 
-function getPostByUserId() {
-    let idUser = window.location.pathname.substring(9);
-    console.log(idUser);
+// Load Profile
+$(document).ready(function () {
+    // Load Profile
+    let _idUser = document.getElementById("userId").getAttribute("value");
+    console.log(_idUser);
+    getPostByUserId(_idUser);
+});
+
+function getPostByUserId(_idUser) {
     var lengthPost = 0;
-    // $.ajax({
-    //     type: "GET",
-    //     url: `/api/posts/page/${page}`,
-    //     data: "",
-    //     async: false,
-    //     dataType: "json",
-    //     success: function (res) {
-    //         if ("error" in res) {
-    //             console.log(res.error);
-    //         } else {
-    //             // for(let i of res.result){
-    //             //     console.log(i)
-    //             // }
+    $.ajax({
+        type: "GET",
+        url: `/api/posts/user/${_idUser}`,
+        data: "",
+        async: false,
+        dataType: "json",
+        success: function (res) {
+            if ("error" in res) {
+                console.log(res.error);
+            } else {
+                // for(let i of res.result){
+                //     console.log(i)
+                // }
 
-    //             for (let post of res.result) {
-    //                 const div = document.createElement("div");
-    //                 div.classList.add("container");
-    //                 let date = new Date(post.date);
+                for (let post of res.result) {
+                    const div = document.createElement("div");
+                    div.classList.add("container");
+                    let date = new Date(post.date);
 
-    //                 // Check exist video url and image post
-    //                 let postBodyUpload = ``;
-    //                 let embedUrl = `https://www.youtube.com/embed/${getIdUrlYoutube(post.video)}`;
-    //                 if (post.image && post.video) {
-    //                     postBodyUpload = `
-    //                         <img src="${post.image}" alt="">
-    //                         <iframe src="${embedUrl}"></iframe>
-    //                     `;
-    //                 } else if (post.image) {
-    //                     postBodyUpload = `
-    //                         <img src="${post.image}" alt="">
-    //                     `;
-    //                 } else if (post.video) {
-    //                     postBodyUpload = `
-    //                         <iframe src="${embedUrl}"></iframe>
-    //                     `;
-    //                 }
+                    // Check exist video url and image post
+                    let postBodyUpload = ``;
+                    let embedUrl = `https://www.youtube.com/embed/${getIdUrlYoutube(post.video)}`;
+                    if (post.image && post.video) {
+                        postBodyUpload = `
+                            <img src="${post.image}" alt="">
+                            <iframe src="${embedUrl}"></iframe>
+                        `;
+                    } else if (post.image) {
+                        postBodyUpload = `
+                            <img src="${post.image}" alt="">
+                        `;
+                    } else if (post.video) {
+                        postBodyUpload = `
+                            <iframe src="${embedUrl}"></iframe>
+                        `;
+                    }
 
-    //                 // fetch commment of post here
-    //                 var listComment = ``;
-    //                 post.comment.forEach((comment) => {
-    //                     let result = getCommentById(comment._id);
-    //                     if (result) {
-    //                         console.log(result);
-    //                         let comment = `
-    //                             <div class="user_comment">
-    //                                 <i class="ti-user"></i>
-    //                                 <div class="comment_text">
-    //                                     <h5>${result.commentBy.fullname}</h5>
-    //                                     <p class="comment_text_content">${result.content}</p>
-    //                                     <div class="comment_more">
-    //                                         <i class="ti-more-alt"></i>
-    //                                     </div>
-    //                                 </div>
-    //                             </div>
-    //                         `;
-    //                         listComment = listComment + comment;
-    //                     }
-    //                 });
+                    // fetch commment of post here
+                    var listComment = ``;
+                    post.comment.forEach((comment) => {
+                        let result = getCommentById(comment._id);
+                        if (result) {
+                            console.log(result);
+                            let comment = `
+                                <div class="user_comment">
+                                    <i class="ti-user"></i>
+                                    <div class="comment_text">
+                                        <h5>${result.commentBy.fullname}</h5>
+                                        <p class="comment_text_content">${result.content}</p>
+                                        <div class="comment_more">
+                                            <i class="ti-more-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            listComment = listComment + comment;
+                        }
+                    });
 
-    //                 let content = `
-    //                     <div class="newfeed_content_post">
-    //                         <div class="newfeed_post_header">
-    //                             <div class="newfeed_post_info">
-    //                                 <i class="ti-user"></i>
-    //                                 <div class="post_NameDate">
-    //                                     <p>${post.postedBy.fullname}</p>
-    //                                     <span>${date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()}</span>
-    //                                 </div>
-    //                             </div>
-    //                             <div class="newfeed_post_more">
-    //                                 <i class="ti-more-alt"></i>
-    //                                 <ul class="more_setting">
-    //                                     <li>Chỉnh Sửa</li>
-    //                                     <li>Xóa</li>
-    //                                 </ul>
-    //                             </div>
-    //                         </div>
-    //                         <div class="newfeed_post_body">
-    //                             <div class="post_body_text">
-    //                                 <p>${post.content}</p>
-    //                             </div>
-    //                             <div class="post_body_upload">${postBodyUpload}</div>
-    //                         </div>
-    //                         <div class="newfeed_post_comment">
-    //                             ${listComment}
-    //                         </div>
-    //                         <div class="newfeed_post_createComment">
-    //                             <i class="ti-user"></i>
-    //                             <input type="text" placeholder="Viết bình luận"></input>
-    //                         </div>
-    //                     </div>
-    //                 `;
-    //                 div.innerHTML = content;
+                    let content = `
+                        <div class="newfeed_content_post">
+                            <div class="newfeed_post_header">
+                                <div class="newfeed_post_info">
+                                    <i class="ti-user"></i>
+                                    <div class="post_NameDate">
+                                        <p>${post.postedBy.fullname}</p>
+                                        <span>${date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()}</span>
+                                    </div>
+                                </div>
+                                <div class="newfeed_post_more">
+                                    <i class="ti-more-alt"></i>
+                                    <ul class="more_setting">
+                                        <li>Chỉnh Sửa</li>
+                                        <li>Xóa</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="newfeed_post_body">
+                                <div class="post_body_text">
+                                    <p>${post.content}</p>
+                                </div>
+                                <div class="post_body_upload">${postBodyUpload}</div>
+                            </div>
+                            <div class="newfeed_post_comment">
+                                ${listComment}
+                            </div>
+                            <div class="newfeed_post_createComment">
+                                <i class="ti-user"></i>
+                                <input type="text" placeholder="Viết bình luận"></input>
+                            </div>
+                        </div>
+                    `;
+                    div.innerHTML = content;
 
-    //                 const list = document.getElementById("pastHere");
-    //                 list.insertBefore(div, list.childNodes[0]);
-    //             }
-    //         }
-    //         lengthPost = Object.keys(res.result).length;
-    //     },
-    // });
+                    const list = document.getElementById("pastHere");
+                    list.insertBefore(div, list.childNodes[0]);
+                }
+            }
+            lengthPost = Object.keys(res.result).length;
+        },
+    });
     return lengthPost;
 }
 
@@ -309,6 +308,25 @@ $("#formUpdatePost").submit(function (e) {
     });
 });
 
+// Delete Post
+$("#button").click(() => {
+    let _idPost = document.getElementById("id").value;
+    
+    $.ajax({
+        type: "delete",
+        url: `/api/posts/${_idPost}`,
+        dataType: "dataType",
+        success: function (res) {
+            if ("error" in res) {
+                console.log("ERROR: ");
+                console.log(res.error);
+            } else {
+                location.reload();
+            }
+        }
+    });
+})
+
 // END POST
 
 // START COMMENT
@@ -355,7 +373,5 @@ $(".formCreateComment").submit(function (e) {
         },
     });
 });
-
-function editComment(){}
 
 function deleteComment(){}

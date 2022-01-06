@@ -26,6 +26,7 @@
                                     <p><i>Khoa: </i> <%= profileUser.faculty || "None" %></p>
                                     <p><i>Lớp: </i> <%= profileUser.class || "None" %></p>
                                     <p><i>MSSV: </i> <%=  studentCode %></p>
+                                    <div id="userId" class="d-none" value="<%=profileUser._id%>"></div>
                                 </div>
                             </div>
 
@@ -109,12 +110,6 @@
                                                         <div class="add-post-link">
                                                             <a href="#"><i class="fas fa-video"></i> Video</a>
                                                             <a href="#"><i class="fas fa-images"></i> Hình ảnh</a>
-                                                            <select name="faculty" id="">
-                                                                <option value="">Phòng/Khoa</option>
-                                                                <option value="CNTT">CNTT</option>
-                                                                <option value="Đ-ĐT">Đ-ĐT</option>
-                                                                <option value="QTKD">QTKD</option>
-                                                            </select>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" id="saveModalButton-2" data-dismiss="modal">Lưu thay đổi</button>
@@ -157,12 +152,11 @@
                                         </div>
                                     </div>
                                     <div class="post-cmts">
-                                        <div>
-                    
+                                        <form>
                                             <img src="../img/avt.jpg" alt="">
                                             <input type="text" placeholder="Nhập nội dung">
                                             <button>Đăng</button>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
