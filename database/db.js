@@ -9,13 +9,10 @@ if (!connectionString) {
     process.exit(1);
 }
 
-console.log(connectionString)
-
 // Connect to database
 function connectDatabase() {
     mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
     const db = mongoose.connection;
-    console.log(db);
     db.on("error", (err) => {
         console.error("MongoDB error: " + err.message);
 
