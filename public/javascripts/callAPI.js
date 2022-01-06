@@ -49,6 +49,8 @@ function getAllPost(page) {
                 // }
 
                 for (let post of res.result) {
+                    console.log(post);
+                    
                     const div = document.createElement("div");
                     div.classList.add("container");
                     let date = new Date(post.date);
