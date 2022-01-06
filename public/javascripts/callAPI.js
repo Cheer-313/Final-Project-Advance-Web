@@ -50,7 +50,7 @@ function getAllPost(page) {
 
                 for (let post of res.result) {
                     console.log(post);
-                    
+
                     const div = document.createElement("div");
                     div.classList.add("container");
                     let date = new Date(post.date);
@@ -95,6 +95,40 @@ function getAllPost(page) {
                         }
                     });
 
+                    // let content = `
+                    //     <div class="newfeed_content_post">
+                    //         <div class="newfeed_post_header">
+                    //             <div class="newfeed_post_info">
+                    //                 <i class="ti-user"></i>
+                    //                 <div class="post_NameDate">
+                    //                     <a href="/profile/${post.postedBy.authId}"><p>${post.postedBy.fullname}</p></a>
+                    //                     <span>${date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()}</span>
+                    //                 </div>
+                    //             </div>
+                    //             <div class="newfeed_post_more">
+                    //                 <i class="ti-more-alt"></i>
+                    //                 <ul class="more_setting">
+                    //                     <li>Chỉnh Sửa</li>
+                    //                     <li>Xóa</li>
+                    //                 </ul>
+                    //             </div>
+                    //         </div>
+                    //         <div class="newfeed_post_body">
+                    //             <div class="post_body_text">
+                    //                 <p>${post.content}</p>
+                    //             </div>
+                    //             <div class="post_body_upload">${postBodyUpload}</div>
+                    //         </div>
+                    //         <div class="newfeed_post_comment">
+                    //             ${listComment}
+                    //         </div>
+                    //         <form action="/api/comment/" method="post" class="newfeed_post_createComment formCreateComment">
+                    //             <i class="ti-user"></i>
+                    //             <input type="hidden" name="_idPost" value="${post._id}"></input>
+                    //             <input type="text" name="content" placeholder="Viết bình luận"></input>
+                    //         </form>
+                    //     </div>
+                    // `;
                     let content = `
                         <div class="newfeed_content_post">
                             <div class="newfeed_post_header">
@@ -117,7 +151,9 @@ function getAllPost(page) {
                                 <div class="post_body_text">
                                     <p>${post.content}</p>
                                 </div>
-                                <div class="post_body_upload">${postBodyUpload}</div>
+                                <div class="post_body_upload">
+                                    ${postBodyUpload}
+                                </div>
                             </div>
                             <div class="newfeed_post_comment">
                                 ${listComment}
