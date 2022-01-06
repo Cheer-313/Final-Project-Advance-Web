@@ -32,6 +32,47 @@
                     <div id="userId" class="d-none" value="<%=profileUser._id%>"></div>
                 </div>
             </div>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span id="closeFormEditProfile" class="close">&times;</span>
+                    <div>
+                        <form action="/profile/edit" method="post">
+                        
+                            <h3>CHỈNH SỬA THÔNG TIN</h3>
+                            <div class="avt-edit">
+                                <span>
+                                    <img src="<%= user.avatar %>" id="edit-avt">
+                                </span>
+                            </div>
+                            <div class="name-edit">
+                                <label for="name">Tên hiển thị</label><br>
+                                <input type="text" name="fullname" id="edit-name" value="<%= user.fullname %>">
+                            </div>
+                        
+                            <div class="facl-edit">
+                                <label for="edit-facl">Khoa</label><br>
+                                <select name="faculty" id="edit-facl">
+                                    <% faculty.forEach(faculty=> { %>
+                                        <option value="<%= faculty %>">
+                                            <%= faculty %>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                            </div>
+                        
+                            <div class="class-edit">
+                                <label for="edit-class">Lớp</label><br>
+                                <input type="text" name="classname" id="edit-class" value="<%= user.class %>">
+                            </div>
+                        
+                            <div class="modal-footer">
+                                <button type="submit" id="saveModalButton" data-dismiss="modal">Lưu thay đổi</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
             <div id="addPostProfileHere" class="newfeed_content_posts">
                 <% Object.keys(posts).forEach(index=> { let post = posts[index] %>
                 <% let date = new Date(post.date); %>
