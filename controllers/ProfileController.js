@@ -4,6 +4,9 @@ const upload = require("../middlewares/upload/UploadImage");
 const fs = require("fs");
 const faculty = require("../const/faculty");
 const { profile } = require("console");
+const Posts = require("../models/PostsModel");
+const { populate } = require("../models/PostsModel");
+
 
 class ProfileController {
 
@@ -13,15 +16,33 @@ class ProfileController {
         let authId = req.params.authId;
         if (authId) {
             let typeUser = authId.substring(0, 6) == "google" ? "google" : "local";
+
             if(typeUser === "google"){
                 let googleUser = await GoogleUser.findOne({ authId: authId });
-                return res.render("profile", { title: googleUser.fullname, profileUser: googleUser, currentUser: req.user, faculty: faculty });
+
+                let posts = await Posts.find({ postedBy: googleUser._id })
+                    .populate("postedBy")
+                    .populate({ path: "comment", populate: { path: "commentBy" } })
+                    .sort({ date: "desc" });
+
+                return res.render("profile", { title: googleUser.fullname, profileUser: googleUser, currentUser: req.user, faculty: faculty, posts: posts });
             } else if( typeUser === "local"){
                 let localUser = await LocalUser.findOne({ authId: authId });
-                return res.render("profile", { title: localUser.fullname, profileUser: localUser, currentUser: req.user, faculty: faculty });
+
+                let posts = await Posts.find({ postedBy: localUser._id })
+                    .populate("postedBy")
+                    .populate({ path: "comment", populate: { path: "commentBy" } })
+                    .sort({ date: "desc" });
+
+                return res.render("profile", { title: localUser.fullname, profileUser: localUser, currentUser: req.user, faculty: faculty, posts: posts });
             }
         }
-        return res.render("profile", { title: req.user.fullname, profileUser: req.user, message: message, faculty: faculty, currentUser: req.user });
+        let posts = await Posts.find({ postedBy: req.user._id })
+            .populate("postedBy")
+            .populate({ path: "comment", populate: { path: "commentBy" } })
+            .sort({ date: "desc" });
+        console.log(posts);
+        return res.render("profile", { title: req.user.fullname, profileUser: req.user, message: message, faculty: faculty, currentUser: req.user, posts: posts });
     }
 
     // Render view /profile/password

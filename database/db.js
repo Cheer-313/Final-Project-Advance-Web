@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const credential = require("./creadential");
 
 // Check connection string
-const connectionString = credential.mongo.connectionString;
+const connectionString = process.env.CONNECT_STRING || credential.mongo.connectionStringAtlas;
 if (!connectionString) {
     console.error("MongoDB connection string missing!");
 

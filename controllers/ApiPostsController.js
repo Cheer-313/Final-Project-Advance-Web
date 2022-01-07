@@ -139,7 +139,7 @@ class ApiPostsController{
                     // Get authId except google or local
                     let folder = req.user.authId.substring(0, 6) == "google" ? req.user.authId.substring(7) : req.user.authId.substring(6);
 
-                    let newPath = `/uploads/${folder}/post`;
+                    let newPath = `uploads/${folder}/post`;
                     if (!fs.existsSync(newPath)) {
                         fs.mkdirSync(newPath, { recursive: true });
                     }

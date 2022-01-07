@@ -9,6 +9,7 @@ $('#set-menu').on("click",()=>{
         show=false;
     }
 });
+
 //set stt
 $('#set-stt').on("click",()=>{
     if (show == false){
@@ -19,6 +20,7 @@ $('#set-stt').on("click",()=>{
         show=false;
     }
 });
+
 //set cmt
 $('#set-cmt').on("click",()=>{
     if (show == false){
