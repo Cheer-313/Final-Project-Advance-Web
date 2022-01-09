@@ -1,8 +1,8 @@
 <div id="main">
     <%- include("./partials/header.ejs") %>
+        <%- include("./partials/sidebar.ejs") %>
 
-        <div id="content">
-            <%- include("./partials/sidebar.ejs") %>
+            <div id="content">
 
                 <div id="intension">
                     <div class="form_createNotify">
@@ -16,15 +16,19 @@
                                 <label for="file">File</label>
                                 <input type="file" id="file" name="files" multiple></input>
                                 <select name="division" id="division">
-                                    <% if(user.role[0] !== "Admin"){ %>
+                                    <% if(user.role[0] !=="Admin" ){ %>
                                         <% user.role.forEach(role=> { %>
-                                            <option value="<%= role %>"><%= role %></option>
-                                        <% }); %>
-                                    <% } else { %>
-                                        <% division.forEach(role=> { %>
-                                            <option value="<%= role %>"><%= role %></option>
-                                        <% }); %>
-                                    <% } %>
+                                            <option value="<%= role %>">
+                                                <%= role %>
+                                            </option>
+                                            <% }); %>
+                                                <% } else { %>
+                                                    <% division.forEach(role=> { %>
+                                                        <option value="<%= role %>">
+                                                            <%= role %>
+                                                        </option>
+                                                        <% }); %>
+                                                            <% } %>
                                 </select>
                                 </br>
 
@@ -48,5 +52,5 @@
                         <p id="valueList"></p>
                     </div>
                 </div>
-        </div>
+            </div>
 </div>

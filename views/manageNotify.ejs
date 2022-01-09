@@ -1,56 +1,56 @@
 <div id="main">
     <%- include("./partials/header.ejs") %>
-
-    <div id="content">
         <%- include("./partials/sidebar.ejs") %>
 
-        <div id="notify_manage">
-            <h1>QUẢN LÝ THÔNG BÁO</h1>
-            <div class="create_notify_btn">
-                <a href="/noti/create">Tạo thông báo mới</a>
+            <div id="content">
+
+                <div id="notify_manage">
+                    <h1>QUẢN LÝ THÔNG BÁO</h1>
+                    <div class="create_notify_btn">
+                        <a href="/noti/create">Tạo thông báo mới</a>
+                    </div>
+                    <div class="notify_manage_content">
+                        <table id="manageNotifyTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên thông báo</th>
+                                    <th>Người đăng</th>
+                                    <th>Phòng/Ban</th>
+                                    <th>Ngày đăng</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if(notification){ %>
+                                    <% Object.keys(notification).forEach(index=> { let noti = notification[index] %>
+                                        <% let hrefDetail=noti.title.replace(/ /g, "-" ) + `-${noti._id}` %>
+                                            <tr>
+                                                <td>
+                                                    <%= parseInt(index) + 1 %>
+                                                </td>
+                                                <td> <a href="<%= hrefDetail %>">
+                                                        <%= noti.title %>
+                                                    </a></td>
+                                                <td>
+                                                    <%= noti.createBy.fullname %>
+                                                </td>
+                                                <td>
+                                                    <%= noti.division %>
+                                                </td>
+                                                <td>
+                                                    <%= moment(noti.date).format("D-M-YYYY") %>
+                                                </td>
+                                                <td>
+                                                    <a href="/noti/edit/<%= noti._id %>">Chỉnh sửa</a>
+                                                    <a href="/noti/delete/<%= noti._id %>">Xoá</a>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="notify_manage_content">
-                <table id="manageNotifyTable">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên thông báo</th>
-                            <th>Người đăng</th>
-                            <th>Phòng/Ban</th>
-                            <th>Ngày đăng</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% if(notification){ %>
-                            <% Object.keys(notification).forEach(index=> { let noti = notification[index] %>
-                                <% let hrefDetail=noti.title.replace(/ /g, "-" ) + `-${noti._id}` %>
-                                    <tr>
-                                        <td>
-                                            <%= parseInt(index) + 1 %>
-                                        </td>
-                                        <td> <a href="<%= hrefDetail %>">
-                                                <%= noti.title %>
-                                            </a></td>
-                                        <td>
-                                            <%= noti.createBy.fullname %>
-                                        </td>
-                                        <td>
-                                            <%= noti.division %>
-                                        </td>
-                                        <td>
-                                            <%= moment(noti.date).format("D-M-YYYY") %>
-                                        </td>
-                                        <td>
-                                            <a href="/noti/edit/<%= noti._id %>">Chỉnh sửa</a>
-                                            <a href="/noti/delete/<%= noti._id %>">Xoá</a>
-                                        </td>
-                                    </tr>
-                                    <% }); %>
-                        <% } %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 </div>

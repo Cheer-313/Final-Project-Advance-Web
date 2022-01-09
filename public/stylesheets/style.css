@@ -1362,6 +1362,11 @@ li {
     border-radius: 20px;
 }
 
+.newfeed_post_more .close_more_setting {
+    padding: 5px;
+    z-index: 5000;
+}
+
 .newfeed_post_more:hover {
     cursor: pointer;
 }
@@ -1477,6 +1482,21 @@ li {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
+.modal_create.modal_custom {
+    display: none;
+}
+.modal_create.modal_custom.modal_active {
+    display: block;
+}
+
+.modal_create {
+    display: none !important;
+}
+
+.modal_create.modal_active {
+    display: block !important;
+}
+
 .modal_container {
     width: 100%;
     height: 100%;
@@ -1492,7 +1512,7 @@ li {
     background-color: #fff;
     padding: 15px 30px;
     border-radius: 10px;
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%;
     z-index: 500;

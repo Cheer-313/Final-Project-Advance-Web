@@ -2,57 +2,57 @@
 <div id="main">
 
     <%- include("./partials/header.ejs") %>
-
-    <div id="content">
-
         <%- include("./partials/sidebar.ejs") %>
 
-        <div class="newfeed_content">
-            <div class="newfeed_content_create">
-                <div id="firstRow_create_js" class="firstRow_create_newfeed">
-                    <i class="ti-user"></i>
-                    <p>What's on your mind, Hung?</p>
-                </div>
-                <div class="secondRow_create_newfeed">
-                    <div id="secondRow_create_js" class="secondRow_upload">
-                        <i class="ti-camera"></i>Photo/Video
-        
-                    </div>
-                    <div id="secondRow_create_js" class="secondRow_upload">
-                        <i class="ti-face-smile"></i>Feeling/Activity
-                    </div>
-                </div>
-            </div>
+            <div id="content">
 
-            <div id="postHere" class="newfeed_content_posts">
-                
-            </div>
-        </div>
-        
-        
-        <div class="newFeed_notify">
-            <div class="newfeed_notify_header">
-                <h3>THÔNG BÁO MỚI</h3>
-                <a href="notifyManage.html">xem tất cả</a>
-            </div>
-            <div class="newfeed_notify_posts">
-                <div class="newfeed_notify_post">
-                    <a href="notifyContent.html">
-                        <span>[Phòng đại học]</span>
-                        <span>02/01/2022</span>
-                        <p>Kế hoạch TSNN/KTLN/môn thay thế TN đợt 1/2021-2022</p>
-                    </a>
+
+                <div class="newfeed_content">
+                    <div class="newfeed_content_create">
+                        <div id="firstRow_create_js" class="firstRow_create_newfeed">
+                            <i class="ti-user"></i>
+                            <p>What's on your mind, Hung?</p>
+                        </div>
+                        <div class="secondRow_create_newfeed">
+                            <div id="secondRow_create_js" class="secondRow_upload">
+                                <i class="ti-camera"></i>Photo/Video
+
+                            </div>
+                            <div id="secondRow_create_js" class="secondRow_upload">
+                                <i class="ti-face-smile"></i>Feeling/Activity
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="postHere" class="newfeed_content_posts">
+
+                    </div>
                 </div>
-                <div class="newfeed_notify_post">
-                    <a href="notifyContent.html">
-                        <span>[Phòng đại học]</span>
-                        <span>02/01/2022</span>
-                        <p>Kế hoạch TSNN/KTLN/môn thay thế TN đợt 1/2021-2022</p>
-                    </a>
+
+
+                <div class="newFeed_notify">
+                    <div class="newfeed_notify_header">
+                        <h3>THÔNG BÁO MỚI</h3>
+                        <a href="notifyManage.html">xem tất cả</a>
+                    </div>
+                    <div class="newfeed_notify_posts">
+                        <div class="newfeed_notify_post">
+                            <a href="notifyContent.html">
+                                <span>[Phòng đại học]</span>
+                                <span>02/01/2022</span>
+                                <p>Kế hoạch TSNN/KTLN/môn thay thế TN đợt 1/2021-2022</p>
+                            </a>
+                        </div>
+                        <div class="newfeed_notify_post">
+                            <a href="notifyContent.html">
+                                <span>[Phòng đại học]</span>
+                                <span>02/01/2022</span>
+                                <p>Kế hoạch TSNN/KTLN/môn thay thế TN đợt 1/2021-2022</p>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 </div>
 
 <div id="modal">
@@ -64,7 +64,9 @@
             <div class="modal_body">
                 <div class="modal_info">
                     <i class="ti-user"></i>
-                    <p><%= user.fullname %></p>
+                    <p>
+                        <%= user.fullname %>
+                    </p>
                 </div>
                 <div class="modal_text">
                     <form id="formCreatePost" action="/api/posts/" method="post">

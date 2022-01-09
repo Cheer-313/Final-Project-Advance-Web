@@ -1,49 +1,53 @@
 <div id="main">
 
     <%- include("./partials/header.ejs") %>
-
-    <div id="content">
-
         <%- include("./partials/sidebar.ejs") %>
 
+            <div id="content">
 
-        <div id="intension">
-            <div class="form_signIn">
-                <form id="form" action="/register" method="post">
-                    <h1>TẠO TÀI KHOẢN MỚI</h1>
-                    <div class="field">
-                        <label for="username">Username:</label></br>
-                        <input type="text" id="username" name="username"></br>
 
-                        <label for="password">Mật khẩu</label></br>
-                        <input type="password" id="password" name="password"></br>
 
-                        <label for="name">Họ tên</label></br>
-                        <input type="text" id="name" name="fullname"></br>
+                <div id="intension">
+                    <div class="form_signIn">
+                        <form id="form" action="/register" method="post">
+                            <h1>TẠO TÀI KHOẢN MỚI</h1>
+                            <div class="field">
+                                <label for="username">Username:</label></br>
+                                <input type="text" id="username" name="username"></br>
 
-                    </div>
+                                <label for="password">Mật khẩu</label></br>
+                                <input type="password" id="password" name="password"></br>
 
-                    <h2>Phòng/Khoa</h2>
-                    <div class="department">
-                        <% division.forEach(role=> { %>
-                            <div class="box">
-                                <input type="checkbox" class="checkbox" value="<%= role %>" name="role">
-                                <label><%= role %></label>
+                                <label for="name">Họ tên</label></br>
+                                <input type="text" id="name" name="fullname"></br>
+
                             </div>
-                        <% }); %>
-                    </div>
-                    <button id="btnSubmit" class="btn-signIn" type="submit">TẠO TÀI KHOẢN</button>
-                    <div id="error"></div>
 
-                    <% if(message){ %>
-                        <div id="error"><%= message %> </div>
-                    <% } %>
-                </form>
+                            <h2>Phòng/Khoa</h2>
+                            <div class="department">
+                                <% division.forEach(role=> { %>
+                                    <div class="box">
+                                        <input type="checkbox" class="checkbox" value="<%= role %>" name="role">
+                                        <label>
+                                            <%= role %>
+                                        </label>
+                                    </div>
+                                    <% }); %>
+                            </div>
+                            <button id="btnSubmit" class="btn-signIn" type="submit">TẠO TÀI KHOẢN</button>
+                            <div id="error"></div>
+
+                            <% if(message){ %>
+                                <div id="error">
+                                    <%= message %>
+                                </div>
+                                <% } %>
+                        </form>
+                    </div>
+
+                    <div class="print-values">
+                        <p id="valueList"></p>
+                    </div>
+                </div>
             </div>
-            
-            <div class="print-values">
-                <p id="valueList"></p>
-            </div>
-        </div>
-    </div>
 </div>

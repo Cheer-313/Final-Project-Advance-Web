@@ -85,8 +85,11 @@
                             <div class="newfeed_post_more">
                                 <i class="ti-more-alt"></i>
                                 <ul class="more_setting">
-                                    <li>Chỉnh Sửa</li>
-                                    <li>Xóa</li>
+                                    <div class="close_more_setting">
+                                        <i class="ti-close "></i>
+                                    </div>
+                                    <li class="btn_custom_more">Chỉnh Sửa</li>
+                                    <li class="btn_delete_more">Xóa</li>
                                 </ul>
                             </div>
                         </div>
@@ -156,8 +159,11 @@
                             <div class="newfeed_post_more">
                                 <i class="ti-more-alt"></i>
                                 <ul class="more_setting">
-                                    <li id="custom_js">Chỉnh Sửa</li>
-                                    <li id="delete_js">Xóa</li>
+                                    <div class="close_more_setting">
+                                        <i class="ti-close "></i>
+                                    </div>
+                                    <li></li>Chỉnh Sửa</li>
+                                    <li>Xóa</li>
                                 </ul>
                             </div>
                         </div>
@@ -268,9 +274,33 @@
     </div>
     <div id="modal">
         <div class="modal_container">
-            <div class="modal_create">
+            <div id="modal_create_js" class="modal_create">
                 <div class="modal_header">
                     <h3>Tạo bài viết</h3>
+                </div>
+                <div class="modal_body">
+                    <div class="modal_info">
+                        <i class="ti-user"></i>
+                        <p>Mạch Tín</p>
+                    </div>
+                    <div class="modal_text">
+                        <form action="">
+                            <textarea placeholder="Bạn đang nghĩ gì thế ?"></textarea>
+                            <label for="file_img">Hình ảnh</label> </br>
+                            <input id="file_img" name="file_img" type="file" placeholder=""> </br>
+                            <label for="video_URL">Video</label> </br>
+                            <input id="video_URL" name="video_URL" type="text" placeholder="URL"> </br>
+                            <button type="submit" id="btn_submit_post">Đăng bài viết</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal_close">
+                    <i class="ti-close"></i>
+                </div>
+            </div>
+            <div id="modal_custom_js" class="modal_create modal_custom">
+                <div class="modal_header">
+                    <h3>Chỉnh sửa bài viết</h3>
                 </div>
                 <div class="modal_body">
                     <div class="modal_info">

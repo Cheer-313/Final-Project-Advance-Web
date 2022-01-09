@@ -1,12 +1,13 @@
 <div id="main">
     <%- include("./partials/header.ejs") %>
+        <%- include("./partials/sidebar.ejs") %>
 
-        <div id="content">
-            <%- include("./partials/sidebar.ejs") %>
+            <div id="content">
 
                 <div id="intension">
                     <div class="form_createNotify">
-                        <form id="form" action="/noti/edit/<%=notification._id%>" method="post" enctype="multipart/form-data">
+                        <form id="form" action="/noti/edit/<%=notification._id%>" method="post"
+                            enctype="multipart/form-data">
                             <h1>TẠO THÔNG BÁO MỚI</h1>
 
                             <div class="field">
@@ -27,7 +28,7 @@
                                             <option value="<%= role %>">
                                                 <%= role %>
                                             </option>
-                                    <% } }); %>
+                                            <% } }); %>
                                 </select>
                                 </br>
 
@@ -43,7 +44,7 @@
                                 <div id="error">
                                     <%= message %>
                                 </div>
-                            <% } %>
+                                <% } %>
                         </form>
                     </div>
 
@@ -51,5 +52,5 @@
                         <p id="valueList"></p>
                     </div>
                 </div>
-        </div>
+            </div>
 </div>

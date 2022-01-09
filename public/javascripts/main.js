@@ -27,13 +27,12 @@ $(document).ready(function () {
 $(document).ready(function () {
     let newfeed_Create1 = document.getElementById("firstRow_create_js");
     let modal_btn_active = document.querySelector("#modal");
-    let modal_close = document.querySelector(".modal_close");
+    let modal_close = document.querySelectorAll(".modal_close");
     let btn_submit_post = document.querySelector("#btn_submit_post");
-    let delete_Post = document.querySelector("#delete_js");
-    let custom_Post = document.querySelector("#custom_js");
 
     function modal_active() {
         modal_btn_active.classList.add("modal_active");
+        modal_create_js.classList.add("modal_active");
     }
 
     function modal_deactive() {
@@ -41,9 +40,11 @@ $(document).ready(function () {
     }
 
     newfeed_Create1.addEventListener("click", modal_active);
-    modal_close.addEventListener("click", modal_deactive);
+    for (var i = 0; i < modal_close.length; ++i) {
+        modal_close[i].addEventListener("click", modal_deactive);
+
+    }
     btn_submit_post.addEventListener("click", modal_deactive);
-    custom_Post.addEventListener("click", modal_active);
 
     let btn_setting_post = document.querySelector(".newfeed_post_more");
     let moreSetting = document.querySelector(".more_setting");
@@ -51,7 +52,30 @@ $(document).ready(function () {
         moreSetting.classList.add("active");
     });
 
+    let btn_close_more = document.querySelector(".close_more_setting");
 
+
+    btn_close_more.addEventListener("click", function () {
+        moreSetting.classList.remove("active");
+    });
+
+
+    let btn_custom_more = document.querySelector(".btn_custom_more");
+    let btn_delete_more = document.querySelector(".btn_delete_more");
+    let newfeed_post = document.querySelector('.newfeed_content_post');
+
+    let modal_create_js = document.querySelector("#modal_create_js");
+    let modal_custom_js = document.querySelector('#modal_custom_js');
+
+    btn_delete_more.addEventListener("click", function () {
+        newfeed_post.remove();
+    })
+
+    btn_custom_more.addEventListener("click", function () {
+        modal_btn_active.classList.add("modal_active");
+        modal_custom_js.classList.add("modal_active");
+        console.log("modal")
+    })
 });
 
 
