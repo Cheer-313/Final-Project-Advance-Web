@@ -344,25 +344,6 @@ body {
     display: inline-block;
 }
 
-@media (max-width: 900px) {
-    #notify_header {
-        display: none;
-    }
-    #content {
-        display: block;
-        margin-left: 0;
-    }
-    #sidebar {
-        display: none;
-    }
-    #intension .form_signIn form {
-        border: none;
-    }
-    .newFeed_notify {
-        width: 700px !important;
-    }
-}
-
 /* END CONTENT */
 
 /* START QUẢN LÝ THÔNG BÁO */
@@ -370,8 +351,6 @@ body {
 #notify_manage {
     margin-top: 30px;
     width: 80%;
-    margin-left: 50%;
-    transform: translateX(-50%);
 }
 
 #notify_manage h1 {
@@ -1580,3 +1559,26 @@ textarea {
 }
 
 /* END NEWFEED VIEW */
+
+@media (max-width: 900px) {
+    #notify_header {
+        display: none;
+    }
+    #content {
+        display: block;
+        margin-left: 0;
+    }
+    #sidebar {
+        display: none;
+    }
+    #intension .form_signIn form {
+        border: none;
+    }
+    .newFeed_notify {
+        width: 700px !important;
+    }
+
+    #notify_manage {
+        width: 100% !important;
+    }
+}
