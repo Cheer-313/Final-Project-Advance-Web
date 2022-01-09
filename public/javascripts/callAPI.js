@@ -22,12 +22,12 @@ $(document).ready(function () {
         };
     }
 
-    // Load Profile
-    if(window.location.pathname == "/profile"){
-        let _idUser = document.getElementById("userId").getAttribute("value");
-        console.log("Olalalala");
-        getPostByUserId(_idUser);
-    }
+    // // Load Profile
+    // if(window.location.pathname == "/profile"){
+    //     let _idUser = document.getElementById("userId").getAttribute("value");
+    //     console.log("Olalalala");
+    //     getPostByUserId(_idUser);
+    // }
     
 });
 
