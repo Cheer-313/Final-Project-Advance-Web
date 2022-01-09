@@ -358,6 +358,9 @@ body {
     #intension .form_signIn form {
         border: none;
     }
+    .newFeed_notify {
+        width: 700px !important;
+    }
 }
 
 /* END CONTENT */
@@ -1228,8 +1231,7 @@ li {
 
 .newFeed_notify {
     margin-top: 30px;
-    min-width: 500px;
-    max-width: 700px;
+    width: 500px;
     /* position: absolute;
     right: 50px;
     top: 100px; */
@@ -1576,11 +1578,5 @@ textarea {
     color: #fff;
     cursor: pointer;
 }
-
-/* @media (max-width: 1424px) {
-    .newFeed_notify {
-        display: none;
-    }
-} */
 
 /* END NEWFEED VIEW */
